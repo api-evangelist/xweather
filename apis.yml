@@ -1,33 +1,39 @@
 aid: lightning-api
-name: Lightning API
-description: >-
-  The Xweather lightning API delivers the precise location and characteristics
-  of every lightning strike globally. Get your lightning data directly from the
-  ...
-type: Index
-position: Consumer
-access: 3rd-Party
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
-tags:
-  - API
-created: '2024-11-08'
-modified: '2024-11-08'
 url: >-
+
   https://raw.githubusercontent.com/api-search/lightning-api/refs/heads/main/apis.yml
-specificationVersion: '0.19'
 apis:
   - aid: lightning-api:lightning-api
     name: Lightning API
-    description: >-
+    tags:
+      - API
+    humanURL: https://xweather.com/lightning-api
+    properties:
+      - url: https://xweather.com/lightning-api
+        type: Documentation
+    description: |-
+
       The Xweather lightning API delivers the precise location and
       characteristics of every lightning strike globally. Get your lightning
       data directly from the ...
-    humanURL: https://xweather.com/lightning-api
-    tags:
-      - API
-    properties:
-      - type: Documentation
-        url: https://xweather.com/lightning-api
+name: Lightning API
+tags:
+  - Lighting
+type: Contract
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+created: '2024-11-08'
+modified: '2025-01-01'
+position: Consuming
+description: >-
+  A "Lightning API" typically refers to an application programming interface
+  (API) that provides access to real-time lightning strike data, allowing
+  developers to integrate information about lightning activity into their
+  applications, such as weather apps, by retrieving details like location, time,
+  and type of lightning strike from a weather data provider like Vaisala
+  Xweather or Weatherbit; essentially, it lets you pull live lightning data to
+  display on a map or within your application.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
+specificationVersion: '0.19'
