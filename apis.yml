@@ -1,22 +1,22 @@
-aid: lightning-api
+aid: xweather
 url: >-
-
   https://raw.githubusercontent.com/api-search/lightning-api/refs/heads/main/apis.yml
 apis:
-  - aid: lightning-api:lightning-api
-    name: Lightning API
+  - aid: xweather:xweather
+    name: Xweather API
     tags:
       - API
     humanURL: https://xweather.com/lightning-api
     properties:
       - url: https://xweather.com/lightning-api
         type: Documentation
-    description: |-
-
-      The Xweather lightning API delivers the precise location and
-      characteristics of every lightning strike globally. Get your lightning
-      data directly from the ...
-name: Lightning API
+    description: >-
+      Easily access the worlds most accurate global lightning data for your
+      operations in real time through our REST API. The Xweather lightning API
+      delivers the precise location and characteristics of every lightning
+      strike globally. Get your lightning data directly from the sourceour
+      science-backed data is at your fingertips.
+name: Xweather
 tags:
   - Lighting
 type: Contract
@@ -26,13 +26,11 @@ created: '2024-11-08'
 modified: '2025-01-01'
 position: Consuming
 description: >-
-  A "Lightning API" typically refers to an application programming interface
-  (API) that provides access to real-time lightning strike data, allowing
-  developers to integrate information about lightning activity into their
-  applications, such as weather apps, by retrieving details like location, time,
-  and type of lightning strike from a weather data provider like Vaisala
-  Xweather or Weatherbit; essentially, it lets you pull live lightning data to
-  display on a map or within your application.
+  Easily access the worlds most accurate global lightning data for your
+  operations in real time through our REST API. The Xweather lightning API
+  delivers the precise location and characteristics of every lightning strike
+  globally. Get your lightning data directly from the sourceour science-backed
+  data is at your fingertips.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
