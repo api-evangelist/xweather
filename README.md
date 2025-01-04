@@ -1,8 +1,7 @@
-# Lightning API (lightning-api)
-A "Lightning API" typically refers to an application programming interface (API) that provides access to real-time lightning strike data, allowing developers to integrate information about lightning activity into their applications, such as weather apps, by retrieving details like location, time, and type of lightning strike from a weather data provider like Vaisala Xweather or Weatherbit; essentially, it lets you pull live lightning data to display on a map or within your application.
+# Xweather (xweather)
+Easily access the worlds most accurate global lightning data for your operations in real time through our REST API. The Xweather lightning API delivers the precise location and characteristics of every lightning strike globally. Get your lightning data directly from the sourceour science-backed data is at your fingertips.
 
-**URL:** [Visit APIs.json URL](
-https://raw.githubusercontent.com/api-search/lightning-api/refs/heads/main/apis.yml)
+**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-search/lightning-api/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -21,11 +20,8 @@ https://raw.githubusercontent.com/api-search/lightning-api/refs/heads/main/apis.
 
 ## APIs
 
-### Lightning API
-
-The Xweather lightning API delivers the precise location and
-characteristics of every lightning strike globally. Get your lightning
-data directly from the ...
+### Xweather API
+Easily access the worlds most accurate global lightning data for your operations in real time through our REST API. The Xweather lightning API delivers the precise location and characteristics of every lightning strike globally. Get your lightning data directly from the sourceour science-backed data is at your fingertips.
 
 **Human URL:** [https://xweather.com/lightning-api](https://xweather.com/lightning-api)
 
