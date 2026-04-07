@@ -5,9 +5,9 @@ apis:
   - aid: xweather:xweather
     name: Xweather API
     tags:
-      - Weather
-      - Lightning
       - Data
+      - Lightning
+      - Weather
     humanURL: https://xweather.com/lightning-api
     properties:
       - url: https://xweather.com/lightning-api
@@ -19,9 +19,9 @@ apis:
       use cases requiring accurate lightning tracking.
 name: Xweather
 tags:
-  - Weather
-  - Lightning
   - Data
+  - Lightning
+  - Weather
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
