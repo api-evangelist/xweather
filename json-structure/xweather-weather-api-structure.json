@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/draft-01/json-structure-core.json",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-structure/xweather-weather-api-structure.json",
+  "title": "Xweather Weather API Structure",
+  "description": "Structural reference describing the canonical envelope shared by Xweather Weather API responses. Every endpoint returns a top-level success flag, an optional error object, and a response payload that is either a single record or an array of records depending on the endpoint.",
+  "type": "object",
+  "properties": {
+    "success": {
+      "type": "boolean",
+      "description": "Whether the request was processed successfully."
+    },
+    "error": {
+      "type": "object",
+      "description": "Error envelope returned when success is false.",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Xweather error code (e.g. invalid_client, no_data)."
+        },
+        "description": {
+          "type": "string",
+          "description": "Human-readable explanation of the error."
+        }
+      }
+    },
+    "response": {
+      "description": "Endpoint payload. Single-record endpoints return an object; list endpoints return an array of objects.",
+      "oneOf": [
+        { "type": "object" },
+        {
+          "type": "array",
+          "items": { "type": "object" }
+        }
+      ]
+    }
+  },
+  "required": ["success"],
+  "x-resources": {
+    "Conditions": "Current and historical surface weather observations and derived conditions.",
+    "Forecasts": "Hourly and daily forecast records for a location.",
+    "Alerts": "Active and historical severe-weather alerts and warnings.",
+    "Lightning": "Cloud-to-ground and in-cloud lightning strike events and threat nowcasts.",
+    "AirQuality": "Air-quality index values, primary pollutants, and category descriptors.",
+    "Observations": "Reports from individual weather stations.",
+    "Fires": "Active wildfire incident records.",
+    "Tropical": "Tropical cyclone tracks, intensity, and forecast cones.",
+    "Maritime": "Marine and ocean weather records (waves, swell, sea state, sea-surface temperature)."
+  },
+  "x-locationSelectors": {
+    "description": "All Xweather endpoints accept a {location} path parameter that selects records by ZIP code, city/state, country, lat/long pair, place name, station ID, or special tokens such as :auto and closest queries."
+  }
+}

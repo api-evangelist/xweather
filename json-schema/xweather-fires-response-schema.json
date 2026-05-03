@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-fires-response-schema.json",
+  "title": "FiresResponse",
+  "description": "FiresResponse schema from Xweather Weather API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiResponse"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "state": {
+                "type": "string"
+              },
+              "country": {
+                "type": "string"
+              },
+              "lat": {
+                "type": "number"
+              },
+              "lon": {
+                "type": "number"
+              },
+              "areaAcres": {
+                "type": "number",
+                "description": "Area burned in acres."
+              },
+              "areaHectares": {
+                "type": "number",
+                "description": "Area burned in hectares."
+              },
+              "containedPercent": {
+                "type": "integer",
+                "description": "Percentage of fire contained."
+              },
+              "cause": {
+                "type": "string",
+                "description": "Cause of the fire."
+              },
+              "type": {
+                "type": "string",
+                "description": "Fire type."
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

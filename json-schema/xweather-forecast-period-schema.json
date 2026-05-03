@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-forecast-period-schema.json",
+  "title": "ForecastPeriod",
+  "description": "ForecastPeriod schema from Xweather Weather API",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp for the forecast period."
+    },
+    "dateTimeISO": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "maxTempC": {
+      "type": "number",
+      "description": "Maximum temperature in Celsius."
+    },
+    "maxTempF": {
+      "type": "number",
+      "description": "Maximum temperature in Fahrenheit."
+    },
+    "minTempC": {
+      "type": "number",
+      "description": "Minimum temperature in Celsius."
+    },
+    "minTempF": {
+      "type": "number",
+      "description": "Minimum temperature in Fahrenheit."
+    },
+    "avgTempC": {
+      "type": "number"
+    },
+    "avgTempF": {
+      "type": "number"
+    },
+    "precipMM": {
+      "type": "number",
+      "description": "Precipitation amount in mm."
+    },
+    "precipIN": {
+      "type": "number",
+      "description": "Precipitation amount in inches."
+    },
+    "pop": {
+      "type": "integer",
+      "description": "Probability of precipitation (0-100)."
+    },
+    "humidity": {
+      "type": "integer",
+      "description": "Relative humidity percentage."
+    },
+    "windSpeedKPH": {
+      "type": "number"
+    },
+    "windSpeedMPH": {
+      "type": "number"
+    },
+    "windDir": {
+      "type": "string"
+    },
+    "windDirDEG": {
+      "type": "number"
+    },
+    "weather": {
+      "type": "string"
+    },
+    "weatherCoded": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "icon": {
+      "type": "string"
+    },
+    "isDay": {
+      "type": "boolean"
+    }
+  }
+}

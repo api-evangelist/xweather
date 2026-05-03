@@ -1,0 +1,119 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "geo": "http://www.w3.org/2003/01/geo/wgs84_pos#",
+    "qudt": "http://qudt.org/schema/qudt/",
+    "unit": "http://qudt.org/vocab/unit/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "xweather": "https://github.com/api-evangelist/xweather/blob/main/json-ld/xweather-context.jsonld#",
+
+    "Location": {
+      "@id": "schema:Place",
+      "@type": "@id"
+    },
+    "Conditions": {
+      "@id": "xweather:Conditions",
+      "@type": "@id"
+    },
+    "Forecast": {
+      "@id": "schema:WeatherForecast",
+      "@type": "@id"
+    },
+    "Alert": {
+      "@id": "xweather:Alert",
+      "@type": "@id"
+    },
+    "LightningStrike": {
+      "@id": "xweather:LightningStrike",
+      "@type": "@id"
+    },
+    "AirQuality": {
+      "@id": "xweather:AirQuality",
+      "@type": "@id"
+    },
+    "Observation": {
+      "@id": "schema:Observation",
+      "@type": "@id"
+    },
+    "TropicalCyclone": {
+      "@id": "xweather:TropicalCyclone",
+      "@type": "@id"
+    },
+    "MaritimeConditions": {
+      "@id": "xweather:MaritimeConditions",
+      "@type": "@id"
+    },
+
+    "name": { "@id": "schema:name" },
+    "description": { "@id": "schema:description" },
+    "city": { "@id": "schema:addressLocality" },
+    "state": { "@id": "schema:addressRegion" },
+    "country": { "@id": "schema:addressCountry" },
+    "country_full": { "@id": "xweather:countryFull" },
+    "loc": {
+      "@id": "geo:location",
+      "@type": "@id"
+    },
+    "lat": { "@id": "geo:lat", "@type": "xsd:decimal" },
+    "long": { "@id": "geo:long", "@type": "xsd:decimal" },
+    "elevFT": { "@id": "schema:elevation" },
+    "tempF": { "@id": "xweather:temperatureF", "@type": "xsd:decimal" },
+    "tempC": { "@id": "xweather:temperatureC", "@type": "xsd:decimal" },
+    "feelslikeF": { "@id": "xweather:apparentTemperatureF", "@type": "xsd:decimal" },
+    "feelslikeC": { "@id": "xweather:apparentTemperatureC", "@type": "xsd:decimal" },
+    "humidity": { "@id": "xweather:relativeHumidity", "@type": "xsd:integer" },
+    "dewpointF": { "@id": "xweather:dewpointF", "@type": "xsd:decimal" },
+    "dewpointC": { "@id": "xweather:dewpointC", "@type": "xsd:decimal" },
+    "pressureMB": { "@id": "xweather:pressureMillibars", "@type": "xsd:decimal" },
+    "windSpeedMPH": { "@id": "xweather:windSpeedMph", "@type": "xsd:decimal" },
+    "windSpeedKPH": { "@id": "xweather:windSpeedKph", "@type": "xsd:decimal" },
+    "windDirDEG": { "@id": "xweather:windDirectionDegrees", "@type": "xsd:integer" },
+    "windDir": { "@id": "xweather:windDirection" },
+    "weather": { "@id": "xweather:weatherCondition" },
+    "weatherShort": { "@id": "xweather:weatherConditionShort" },
+    "icon": { "@id": "xweather:iconName" },
+    "visibilityMI": { "@id": "xweather:visibilityMiles", "@type": "xsd:decimal" },
+    "visibilityKM": { "@id": "xweather:visibilityKilometers", "@type": "xsd:decimal" },
+    "uvi": { "@id": "xweather:uvIndex", "@type": "xsd:decimal" },
+    "precipMM": { "@id": "xweather:precipitationMillimeters", "@type": "xsd:decimal" },
+    "precipIN": { "@id": "xweather:precipitationInches", "@type": "xsd:decimal" },
+    "snowDepthIN": { "@id": "xweather:snowDepthInches", "@type": "xsd:decimal" },
+    "cloudsCoded": { "@id": "xweather:cloudsCoded" },
+    "skyCover": { "@id": "xweather:skyCoverPercent", "@type": "xsd:integer" },
+    "obTimestamp": { "@id": "dcterms:date", "@type": "xsd:dateTime" },
+    "obDateTime": { "@id": "xweather:observationDateTime", "@type": "xsd:dateTime" },
+    "timestamp": { "@id": "dcterms:date", "@type": "xsd:dateTime" },
+    "dateTimeISO": { "@id": "schema:dateTime", "@type": "xsd:dateTime" },
+
+    "details": { "@id": "schema:description" },
+    "headline": { "@id": "schema:headline" },
+    "severity": { "@id": "xweather:severity" },
+    "urgency": { "@id": "xweather:urgency" },
+    "certainty": { "@id": "xweather:certainty" },
+
+    "peakAmperage": { "@id": "xweather:peakAmperage", "@type": "xsd:decimal" },
+    "polarity": { "@id": "xweather:polarity" },
+    "type": { "@id": "rdf:type" },
+
+    "aqi": { "@id": "xweather:airQualityIndex", "@type": "xsd:integer" },
+    "category": { "@id": "schema:category" },
+    "primaryPollutant": { "@id": "xweather:primaryPollutant" },
+
+    "windspeedKnots": { "@id": "xweather:windSpeedKnots", "@type": "xsd:decimal" },
+    "pressureMb": { "@id": "xweather:pressureMillibars", "@type": "xsd:decimal" },
+    "stormCategory": { "@id": "xweather:stormCategory" },
+
+    "stationId": { "@id": "schema:identifier" },
+
+    "success": { "@id": "xweather:success", "@type": "xsd:boolean" },
+    "error": { "@id": "schema:error" },
+    "response": { "@id": "xweather:response" },
+    "code": { "@id": "schema:identifier" },
+    "message": { "@id": "schema:description" }
+  }
+}

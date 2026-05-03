@@ -1,0 +1,1058 @@
+openapi: 3.1.0
+info:
+  title: Xweather Weather API
+  description: >-
+    The Xweather Weather API provides real-time and historical weather data including
+    current conditions, forecasts, severe weather alerts, lightning data, air quality,
+    maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed
+    hyper-local weather intelligence through a RESTful interface. Authentication uses
+    a client ID and client secret passed as query parameters or HTTP headers.
+  version: 1.0.0
+  contact:
+    name: Xweather Support
+    url: https://www.xweather.com/support
+  termsOfService: https://www.xweather.com/legal/terms
+servers:
+  - url: https://data.api.xweather.com
+    description: Xweather Weather API base URL
+security:
+  - clientAuth: []
+tags:
+  - name: Conditions
+    description: Current and historical weather conditions
+  - name: Forecasts
+    description: Weather forecasts
+  - name: Alerts
+    description: Severe weather alerts and warnings
+  - name: Lightning
+    description: Lightning strike data and nowcasts
+  - name: Air Quality
+    description: Air quality index and pollutant data
+  - name: Maritime
+    description: Marine and ocean weather data
+  - name: Fires
+    description: Wildfire data
+  - name: Tropical
+    description: Tropical cyclone and hurricane data
+  - name: Observations
+    description: Weather station observations
+paths:
+  /conditions/{location}:
+    get:
+      operationId: getConditions
+      summary: Get Current Conditions
+      description: Returns current weather conditions for a specified location including temperature, humidity, wind, precipitation, and more.
+      tags:
+        - Conditions
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (ZIP code, city name, lat/long, or place name).
+          example: "seattle,wa"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter results (e.g., allstations).
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of results to return.
+      responses:
+        '200':
+          description: Current weather conditions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /forecasts/{location}:
+    get:
+      operationId: getForecasts
+      summary: Get Weather Forecasts
+      description: Returns weather forecast data for a specified location including hourly and daily forecasts.
+      tags:
+        - Forecasts
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (ZIP code, city name, lat/long, or place name).
+          example: "new-york,ny"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [1hr, 3hr, 6hr, 12hr, 1day]
+          description: Forecast interval filter.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Number of forecast periods to return.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Weather forecast data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /alerts/{location}:
+    get:
+      operationId: getAlerts
+      summary: Get Weather Alerts
+      description: Returns active weather alerts and advisories for a specified location from the National Weather Service, Environment Canada, and MeteoAlarm.
+      tags:
+        - Alerts
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (ZIP code, city name, lat/long, or place name).
+          example: "chicago,il"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by alert type (e.g., tornado, flood).
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of alerts to return.
+      responses:
+        '200':
+          description: Active weather alerts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlertsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /lightning/{location}:
+    get:
+      operationId: getLightning
+      summary: Get Lightning Strike Data
+      description: Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes.
+      tags:
+        - Lightning
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier or radius query (e.g., "40.7128,-74.0060" or "closest:20:40.7128,-74.0060").
+          example: "40.7128,-74.0060"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Radius for nearby strikes (e.g., "25mi" or "40km").
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of lightning strikes to return.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Lightning strike data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LightningResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /lightning/threats/{location}:
+    get:
+      operationId: getLightningThreats
+      summary: Get Lightning Threat Nowcast
+      description: Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals.
+      tags:
+        - Lightning
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (lat/long or place name).
+          example: "dallas,tx"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+      responses:
+        '200':
+          description: Lightning threat nowcast data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LightningThreatsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /airquality/{location}:
+    get:
+      operationId: getAirQuality
+      summary: Get Air Quality Data
+      description: Returns current and forecast Air Quality Index (AQI), Health Index (AQHI), and individual pollutant concentrations for a location.
+      tags:
+        - Air Quality
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (ZIP code, city name, lat/long).
+          example: "los-angeles,ca"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Air quality data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirQualityResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /observations/{location}:
+    get:
+      operationId: getObservations
+      summary: Get Weather Observations
+      description: Returns current weather observations from METAR stations and other reporting stations near the specified location.
+      tags:
+        - Observations
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (city, ZIP code, ICAO code, lat/long).
+          example: "KSEA"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter results (e.g., allstations, metar).
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of observations to return.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Weather observations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /fires/{location}:
+    get:
+      operationId: getWildfires
+      summary: Get Wildfire Data
+      description: Returns active and historical wildfire data for the US and Canada including type, cause, area, and percent contained.
+      tags:
+        - Fires
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier or state/province code.
+          example: "california"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of fire records to return.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Wildfire data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FiresResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /tropical/cyclones:
+    get:
+      operationId: listTropicalCyclones
+      summary: List Tropical Cyclones
+      description: Returns active and archive information on global tropical cyclones including category, track, and intensity data.
+      tags:
+        - Tropical
+      parameters:
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [active, archive]
+          description: Filter by active or archive cyclones.
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Maximum number of cyclones to return.
+      responses:
+        '200':
+          description: Tropical cyclone data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TropicalCyclonesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /maritime/{location}:
+    get:
+      operationId: getMaritimeConditions
+      summary: Get Maritime Weather Conditions
+      description: Returns global marine weather data including wave height, sea surface temperature, swell, and wind for navigation and offshore operations.
+      tags:
+        - Maritime
+      parameters:
+        - name: location
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Location identifier (lat/long or coastal place name).
+          example: "47.5,-124.6"
+        - name: client_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client ID.
+        - name: client_secret
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Xweather API client secret.
+        - name: fields
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Maritime weather conditions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MaritimeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    clientAuth:
+      type: apiKey
+      in: query
+      name: client_id
+      description: >-
+        Xweather uses client_id and client_secret query parameters for authentication.
+        Both are required on every request.
+  schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+        - success
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: "invalid_client"
+        description:
+          type: string
+          description: Human-readable error description.
+          example: "Invalid client ID or secret."
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Location identifier.
+        name:
+          type: string
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
+    ConditionsObservation:
+      type: object
+      properties:
+        tempC:
+          type: number
+          description: Temperature in Celsius.
+        tempF:
+          type: number
+          description: Temperature in Fahrenheit.
+        feelslikeC:
+          type: number
+          description: Feels-like temperature in Celsius.
+        feelslikeF:
+          type: number
+          description: Feels-like temperature in Fahrenheit.
+        humidity:
+          type: integer
+          description: Relative humidity percentage.
+        dewpointC:
+          type: number
+          description: Dew point in Celsius.
+        dewpointF:
+          type: number
+          description: Dew point in Fahrenheit.
+        windSpeedKPH:
+          type: number
+          description: Wind speed in KPH.
+        windSpeedMPH:
+          type: number
+          description: Wind speed in MPH.
+        windDir:
+          type: string
+          description: Wind direction abbreviation (e.g., NW).
+        windDirDEG:
+          type: number
+          description: Wind direction in degrees.
+        pressureMB:
+          type: number
+          description: Pressure in millibars.
+        pressureIN:
+          type: number
+          description: Pressure in inches of mercury.
+        precipMM:
+          type: number
+          description: Precipitation in millimeters.
+        precipIN:
+          type: number
+          description: Precipitation in inches.
+        sky:
+          type: integer
+          description: Sky cover percentage.
+        visibilityKM:
+          type: number
+          description: Visibility in kilometers.
+        visibilityMI:
+          type: number
+          description: Visibility in miles.
+        cloudsCoded:
+          type: string
+          description: Cloud coverage code.
+        weather:
+          type: string
+          description: Weather description string.
+        weatherCoded:
+          type: array
+          items:
+            type: object
+          description: Coded weather conditions array.
+        weatherPrimary:
+          type: string
+          description: Primary weather condition description.
+        icon:
+          type: string
+          description: Icon code for current conditions.
+        isDay:
+          type: boolean
+          description: Whether it is daytime at the location.
+        timestamp:
+          type: integer
+          description: Unix timestamp of the observation.
+        dateTimeISO:
+          type: string
+          format: date-time
+          description: ISO 8601 datetime string.
+    ConditionsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              oneOf:
+                - $ref: '#/components/schemas/ConditionsRecord'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/ConditionsRecord'
+    ConditionsRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Station or place identifier.
+        loc:
+          $ref: '#/components/schemas/Location'
+        place:
+          type: object
+          description: Place name components.
+        profile:
+          type: object
+          description: Location profile data.
+        ob:
+          $ref: '#/components/schemas/ConditionsObservation'
+        raw:
+          type: string
+          description: Raw METAR or observation string.
+        relativeTo:
+          type: object
+          description: Distance and bearing relative to queried location.
+    ForecastPeriod:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          description: Unix timestamp for the forecast period.
+        dateTimeISO:
+          type: string
+          format: date-time
+        maxTempC:
+          type: number
+          description: Maximum temperature in Celsius.
+        maxTempF:
+          type: number
+          description: Maximum temperature in Fahrenheit.
+        minTempC:
+          type: number
+          description: Minimum temperature in Celsius.
+        minTempF:
+          type: number
+          description: Minimum temperature in Fahrenheit.
+        avgTempC:
+          type: number
+        avgTempF:
+          type: number
+        precipMM:
+          type: number
+          description: Precipitation amount in mm.
+        precipIN:
+          type: number
+          description: Precipitation amount in inches.
+        pop:
+          type: integer
+          description: Probability of precipitation (0-100).
+        humidity:
+          type: integer
+          description: Relative humidity percentage.
+        windSpeedKPH:
+          type: number
+        windSpeedMPH:
+          type: number
+        windDir:
+          type: string
+        windDirDEG:
+          type: number
+        weather:
+          type: string
+        weatherCoded:
+          type: array
+          items:
+            type: object
+        icon:
+          type: string
+        isDay:
+          type: boolean
+    ForecastsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: object
+              properties:
+                loc:
+                  $ref: '#/components/schemas/Location'
+                periods:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ForecastPeriod'
+    Alert:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique alert identifier.
+        type:
+          type: string
+          description: Alert type code.
+        name:
+          type: string
+          description: Alert name.
+        body:
+          type: string
+          description: Full text body of the alert.
+        timestamps:
+          type: object
+          properties:
+            issued:
+              type: integer
+            expires:
+              type: integer
+            updated:
+              type: integer
+        areas:
+          type: array
+          items:
+            type: object
+          description: Geographic areas affected by the alert.
+    AlertsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  loc:
+                    $ref: '#/components/schemas/Location'
+                  alerts:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Alert'
+    LightningStrike:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Strike identifier.
+        lat:
+          type: number
+          description: Latitude of the strike.
+        lon:
+          type: number
+          description: Longitude of the strike.
+        timestamp:
+          type: integer
+          description: Unix timestamp of the strike.
+        dateTimeISO:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: Strike type (e.g., CG for cloud-to-ground, IC for intra-cloud).
+        polarity:
+          type: string
+          enum: ['+', '-']
+          description: Strike polarity (positive or negative).
+        peakAmpKA:
+          type: number
+          description: Peak amplitude in kiloamperes.
+        ic:
+          type: boolean
+          description: Whether the strike was intra-cloud.
+    LightningResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  loc:
+                    $ref: '#/components/schemas/Location'
+                  ob:
+                    $ref: '#/components/schemas/LightningStrike'
+    LightningThreatsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+    AirQualityObservation:
+      type: object
+      properties:
+        aqi:
+          type: integer
+          description: Air Quality Index value.
+        category:
+          type: string
+          description: AQI category (e.g., Good, Moderate, Unhealthy).
+        pollutants:
+          type: object
+          description: Individual pollutant concentrations.
+          properties:
+            o3:
+              type: object
+              description: Ozone data.
+            pm25:
+              type: object
+              description: PM2.5 particulate matter data.
+            pm10:
+              type: object
+              description: PM10 particulate matter data.
+            co:
+              type: object
+              description: Carbon monoxide data.
+            no2:
+              type: object
+              description: Nitrogen dioxide data.
+            so2:
+              type: object
+              description: Sulfur dioxide data.
+        timestamp:
+          type: integer
+        dateTimeISO:
+          type: string
+          format: date-time
+    AirQualityResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: object
+              properties:
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  $ref: '#/components/schemas/AirQualityObservation'
+    ObservationsResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              oneOf:
+                - $ref: '#/components/schemas/ConditionsRecord'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/ConditionsRecord'
+    FiresResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  state:
+                    type: string
+                  country:
+                    type: string
+                  lat:
+                    type: number
+                  lon:
+                    type: number
+                  areaAcres:
+                    type: number
+                    description: Area burned in acres.
+                  areaHectares:
+                    type: number
+                    description: Area burned in hectares.
+                  containedPercent:
+                    type: integer
+                    description: Percentage of fire contained.
+                  cause:
+                    type: string
+                    description: Cause of the fire.
+                  type:
+                    type: string
+                    description: Fire type.
+    TropicalCyclonesResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  basin:
+                    type: string
+                  category:
+                    type: string
+                  status:
+                    type: string
+    MaritimeResponse:
+      allOf:
+        - $ref: '#/components/schemas/ApiResponse'
+        - type: object
+          properties:
+            response:
+              type: object
+              properties:
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  type: object
+                  description: Maritime observation data.
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'

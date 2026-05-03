@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-air-quality-observation-schema.json",
+  "title": "AirQualityObservation",
+  "description": "AirQualityObservation schema from Xweather Weather API",
+  "type": "object",
+  "properties": {
+    "aqi": {
+      "type": "integer",
+      "description": "Air Quality Index value."
+    },
+    "category": {
+      "type": "string",
+      "description": "AQI category (e.g., Good, Moderate, Unhealthy)."
+    },
+    "pollutants": {
+      "type": "object",
+      "description": "Individual pollutant concentrations.",
+      "properties": {
+        "o3": {
+          "type": "object",
+          "description": "Ozone data."
+        },
+        "pm25": {
+          "type": "object",
+          "description": "PM2.5 particulate matter data."
+        },
+        "pm10": {
+          "type": "object",
+          "description": "PM10 particulate matter data."
+        },
+        "co": {
+          "type": "object",
+          "description": "Carbon monoxide data."
+        },
+        "no2": {
+          "type": "object",
+          "description": "Nitrogen dioxide data."
+        },
+        "so2": {
+          "type": "object",
+          "description": "Sulfur dioxide data."
+        }
+      }
+    },
+    "timestamp": {
+      "type": "integer"
+    },
+    "dateTimeISO": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

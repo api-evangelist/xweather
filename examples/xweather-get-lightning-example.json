@@ -1,0 +1,66 @@
+{
+  "description": "Example response from GET /lightning/{location} for a lat/long coordinate in Texas",
+  "request": {
+    "method": "GET",
+    "url": "https://data.api.xweather.com/lightning/32.7767,-96.7970",
+    "queryParameters": {
+      "client_id": "YOUR_CLIENT_ID",
+      "client_secret": "YOUR_CLIENT_SECRET",
+      "radius": "25mi",
+      "limit": "5"
+    }
+  },
+  "response": {
+    "success": true,
+    "response": [
+      {
+        "id": "ltng-001",
+        "loc": {
+          "lat": 32.8821,
+          "lon": -96.8702
+        },
+        "ob": {
+          "id": "ltng-001",
+          "lat": 32.8821,
+          "lon": -96.8702,
+          "timestamp": 1746268500,
+          "dateTimeISO": "2026-05-03T09:55:00-05:00",
+          "type": "CG",
+          "polarity": "-",
+          "peakAmpKA": -42.3,
+          "ic": false
+        },
+        "relativeTo": {
+          "bearing": 310,
+          "bearingENG": "NW",
+          "distanceKM": 14.6,
+          "distanceMI": 9.1
+        }
+      },
+      {
+        "id": "ltng-002",
+        "loc": {
+          "lat": 32.7012,
+          "lon": -96.6534
+        },
+        "ob": {
+          "id": "ltng-002",
+          "lat": 32.7012,
+          "lon": -96.6534,
+          "timestamp": 1746268560,
+          "dateTimeISO": "2026-05-03T09:56:00-05:00",
+          "type": "IC",
+          "polarity": "+",
+          "peakAmpKA": 18.7,
+          "ic": true
+        },
+        "relativeTo": {
+          "bearing": 135,
+          "bearingENG": "SE",
+          "distanceKM": 17.2,
+          "distanceMI": 10.7
+        }
+      }
+    ]
+  }
+}

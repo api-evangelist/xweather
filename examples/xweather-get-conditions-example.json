@@ -1,0 +1,61 @@
+{
+  "description": "Example response from GET /conditions/{location} for Seattle, WA",
+  "request": {
+    "method": "GET",
+    "url": "https://data.api.xweather.com/conditions/seattle,wa",
+    "queryParameters": {
+      "client_id": "YOUR_CLIENT_ID",
+      "client_secret": "YOUR_CLIENT_SECRET"
+    }
+  },
+  "response": {
+    "success": true,
+    "response": {
+      "id": "KSEA",
+      "loc": {
+        "id": "KSEA",
+        "name": "Seattle",
+        "state": "WA",
+        "stateFull": "Washington",
+        "country": "US",
+        "countryFull": "United States",
+        "lat": 47.4502778,
+        "lon": -122.3088889,
+        "elevM": 131,
+        "elevFT": 430
+      },
+      "place": {
+        "name": "Seattle",
+        "state": "wa",
+        "country": "us"
+      },
+      "ob": {
+        "tempC": 12.2,
+        "tempF": 54,
+        "feelslikeC": 10.6,
+        "feelslikeF": 51,
+        "humidity": 78,
+        "dewpointC": 8.3,
+        "dewpointF": 47,
+        "windSpeedKPH": 14.8,
+        "windSpeedMPH": 9.2,
+        "windDir": "SW",
+        "windDirDEG": 225,
+        "pressureMB": 1016.2,
+        "pressureIN": 30.01,
+        "precipMM": 0,
+        "precipIN": 0,
+        "sky": 75,
+        "visibilityKM": 16.1,
+        "visibilityMI": 10,
+        "weather": "Mostly Cloudy",
+        "weatherPrimary": "Mostly Cloudy",
+        "icon": "mcloudy",
+        "isDay": true,
+        "timestamp": 1746268800,
+        "dateTimeISO": "2026-05-03T10:00:00-07:00"
+      },
+      "raw": "KSEA 031700Z 23009KT 10SM FEW015 BKN048 12/08 A3001 RMK AO2"
+    }
+  }
+}

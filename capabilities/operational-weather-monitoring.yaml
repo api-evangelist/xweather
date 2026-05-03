@@ -1,0 +1,74 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Operational Weather Monitoring"
+  description: >-
+    Continuously monitor a portfolio of operational sites for weather risk by combining
+    Xweather conditions, forecasts, and severe-weather alerts. Designed for an Operations
+    Manager who needs to make go/no-go and contingency decisions across many locations.
+  tags:
+    - Operations Manager
+    - Weather
+    - Forecasts
+    - Severe Weather
+    - Alerts
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      XWEATHER_CLIENT_ID: XWEATHER_CLIENT_ID
+      XWEATHER_CLIENT_SECRET: XWEATHER_CLIENT_SECRET
+
+capability:
+  consumes:
+    - import: xweather-weather-api
+      location: ./shared/xweather-weather-api.yaml
+
+  exposes:
+    - type: http
+      namespace: weather-monitoring
+      paths:
+        - path: /sites/{location}/conditions
+          method: GET
+          summary: Get Site Conditions
+          description: Get current conditions for a monitored site.
+          calls:
+            - capability: xweather-weather-api.conditions.get-conditions
+              parameters:
+                location: "{location}"
+
+        - path: /sites/{location}/forecast
+          method: GET
+          summary: Get Site Forecast
+          description: Get the forecast for a monitored site.
+          calls:
+            - capability: xweather-weather-api.forecasts.get-forecasts
+              parameters:
+                location: "{location}"
+
+        - path: /sites/{location}/alerts
+          method: GET
+          summary: Get Site Alerts
+          description: Get active severe weather alerts for a monitored site.
+          calls:
+            - capability: xweather-weather-api.alerts.get-alerts
+              parameters:
+                location: "{location}"
+
+    - type: mcp
+      namespace: weather-monitoring
+      tools:
+        - name: get_site_conditions
+          description: Get current conditions for a site.
+          calls:
+            - capability: xweather-weather-api.conditions.get-conditions
+        - name: get_site_forecast
+          description: Get forecast for a site.
+          calls:
+            - capability: xweather-weather-api.forecasts.get-forecasts
+        - name: get_site_alerts
+          description: Get severe weather alerts for a site.
+          calls:
+            - capability: xweather-weather-api.alerts.get-alerts

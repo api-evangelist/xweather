@@ -1,0 +1,206 @@
+aid: xweather-vocabulary
+name: Xweather Vocabulary
+description: >-
+  Domain vocabulary for the Xweather Weather API by Vaisala, covering meteorological
+  resources, observation types, severe-weather concepts, lightning data, air quality,
+  maritime weather, and the operational and capability dimensions of the platform.
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Air Quality
+  - Data
+  - Forecasts
+  - Lightning
+  - Maritime
+  - Observations
+  - Severe Weather
+  - Weather
+
+operational:
+  resources:
+    - name: Conditions
+      description: Current and historical surface weather conditions for a location.
+    - name: Forecasts
+      description: Hourly and daily weather forecast records.
+    - name: Alerts
+      description: Active and historical severe-weather alerts and watches/warnings.
+    - name: Lightning
+      description: Cloud-to-ground and in-cloud lightning strike events and threat nowcasts.
+    - name: AirQuality
+      description: Air-quality index values, primary pollutants, and category descriptors.
+    - name: Observations
+      description: Reports from individual surface weather stations.
+    - name: Fires
+      description: Active wildfire incident records and perimeters.
+    - name: TropicalCyclones
+      description: Tropical cyclone tracks, intensity, and forecast cones.
+    - name: Maritime
+      description: Marine and ocean weather records (waves, swell, sea state, sea-surface temperature).
+
+  actions:
+    - name: getConditions
+      description: Retrieve current weather conditions for a location.
+    - name: getForecasts
+      description: Retrieve hourly or daily forecasts for a location.
+    - name: getAlerts
+      description: Retrieve active severe weather alerts for a location.
+    - name: getLightning
+      description: Retrieve recent lightning strike events.
+    - name: getLightningThreats
+      description: Retrieve lightning threat nowcast (probability of lightning in the next interval).
+    - name: getAirQuality
+      description: Retrieve current air quality index and pollutant data for a location.
+    - name: getObservations
+      description: Retrieve recent observations from surface weather stations.
+    - name: getWildfires
+      description: Retrieve active wildfire incidents.
+    - name: listTropicalCyclones
+      description: List currently active tropical cyclones globally.
+    - name: getMaritimeConditions
+      description: Retrieve marine weather conditions (waves, swell, SST) for a location.
+
+capability:
+  workflows:
+    - name: Operational Weather Monitoring
+      description: >-
+        Continuously poll conditions, forecasts, and alerts for a fixed set of operational
+        sites and dispatch notifications when severe weather thresholds are crossed.
+      persona: Operations Manager
+    - name: Lightning Safety Automation
+      description: >-
+        Use lightning strikes and threat nowcasts to drive automated stop-work and
+        all-clear signals for outdoor operations such as construction, sports venues,
+        and aviation ground crews.
+      persona: Safety Officer
+    - name: Air Quality Reporting
+      description: >-
+        Aggregate AQI and pollutant readings across a portfolio of facilities to drive
+        environmental, health, and compliance reporting.
+      persona: Environmental Analyst
+    - name: Maritime Routing
+      description: >-
+        Combine maritime conditions, tropical cyclone tracks, and forecasts to optimize
+        shipping routes and ETA calculations.
+      persona: Marine Operations Planner
+    - name: Wildfire Response
+      description: >-
+        Combine wildfire incident data with conditions and forecasts to support emergency
+        response and asset protection.
+      persona: Emergency Response Coordinator
+
+  personas:
+    - name: Operations Manager
+      description: >-
+        Plans and oversees operations exposed to weather risk; consumes conditions,
+        forecasts, and alerts to make go/no-go decisions.
+    - name: Safety Officer
+      description: >-
+        Responsible for outdoor worker and public safety; consumes lightning, alerts,
+        and severe-weather feeds.
+    - name: Environmental Analyst
+      description: >-
+        Tracks air quality and emissions for compliance and reporting; consumes air
+        quality and observation feeds.
+    - name: Marine Operations Planner
+      description: >-
+        Plans ship routing and port operations; consumes maritime conditions and tropical
+        cyclone tracks.
+    - name: Emergency Response Coordinator
+      description: >-
+        Coordinates response to natural hazards; consumes wildfire, alerts, and conditions.
+
+terms:
+
+  - term: Xweather
+    definition: >-
+      Vaisala's weather data platform delivering real-time and historical conditions,
+      forecasts, severe weather alerts, lightning, air quality, maritime, wildfire, and
+      tropical cyclone data through REST APIs.
+    category: Platform
+    aliases:
+      - AerisWeather
+      - Vaisala Xweather
+
+  - term: Vaisala
+    definition: >-
+      Finnish industrial-measurement company that operates the Xweather platform and
+      a global lightning detection network among other meteorological infrastructure.
+    category: Provider
+
+  - term: Client ID
+    definition: >-
+      Public API credential identifying a developer account; sent as the client_id query
+      parameter together with client_secret on every Xweather API request.
+    category: Authentication
+
+  - term: Client Secret
+    definition: >-
+      Private API credential paired with client_id to authenticate Xweather API requests.
+      Sent as the client_secret query parameter or via HTTP headers.
+    category: Authentication
+
+  - term: Location Selector
+    definition: >-
+      The {location} path parameter accepted by every Xweather endpoint; supports ZIP
+      codes, city/state pairs, country codes, lat/long pairs, place names, station IDs,
+      and special tokens such as :auto and closest queries.
+    category: Concept
+
+  - term: Lightning Strike
+    definition: >-
+      A discrete cloud-to-ground or in-cloud electrical discharge detected by Vaisala's
+      lightning detection network. Each strike carries timestamp, location, peak current,
+      and polarity.
+    category: Resource
+
+  - term: Lightning Threat Nowcast
+    definition: >-
+      A short-term probabilistic forecast of lightning activity for a location, used to
+      drive stop-work and all-clear decisions for outdoor operations.
+    category: Resource
+
+  - term: AQI
+    definition: >-
+      Air Quality Index. A normalized index value (typically 0-500) categorizing air
+      quality from Good through Hazardous; reported with primary pollutant.
+    category: Concept
+    aliases:
+      - Air Quality Index
+
+  - term: Tropical Cyclone
+    definition: >-
+      A rotating low-pressure storm system originating over tropical or subtropical
+      waters; classified by sustained wind speed (Tropical Depression, Tropical Storm,
+      Hurricane/Typhoon Category 1-5).
+    category: Resource
+
+  - term: Maritime Conditions
+    definition: >-
+      Ocean and marine weather data including significant wave height, swell period,
+      sea-surface temperature, and wind/wave fields.
+    category: Resource
+
+  - term: Severe Weather Alert
+    definition: >-
+      A government-issued advisory, watch, or warning for hazardous weather (severe
+      thunderstorm, tornado, flood, winter storm, etc.). Carries severity, urgency,
+      and certainty fields aligned with the Common Alerting Protocol.
+    category: Resource
+
+  - term: Surface Observation
+    definition: >-
+      A weather report from a fixed station (typically METAR-derived) including
+      temperature, humidity, wind, pressure, and present weather codes.
+    category: Resource
+
+  - term: Forecast Period
+    definition: >-
+      A single time slice within a forecast response, identified by start/end timestamps
+      and characterized by expected temperature, precipitation, wind, and weather codes.
+    category: Concept
+
+  - term: METAR
+    definition: >-
+      Meteorological Aerodrome Report. The international standard for surface weather
+      observations, used as the primary input for Xweather observations endpoints.
+    category: Standard

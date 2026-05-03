@@ -1,0 +1,46 @@
+{
+  "success": true,
+  "error": null,
+  "response": [
+    {
+      "loc": { "lat": 47.6062, "long": -122.3321 },
+      "place": { "name": "seattle", "state": "wa", "country": "us" },
+      "interval": "day",
+      "periods": [
+        {
+          "timestamp": 1746288000,
+          "validTime": "2026-05-04T00:00:00-07:00",
+          "dateTimeISO": "2026-05-04T00:00:00-07:00",
+          "maxTempF": 68,
+          "minTempF": 49,
+          "maxTempC": 20,
+          "minTempC": 9,
+          "avgTempF": 58,
+          "avgTempC": 14,
+          "pop": 20,
+          "precipMM": 1.2,
+          "precipIN": 0.05,
+          "windSpeedMaxMPH": 14,
+          "windDirMax": "WSW",
+          "weather": "Mostly Sunny",
+          "weatherShort": "Mostly Sunny",
+          "icon": "fewclouds.png"
+        },
+        {
+          "timestamp": 1746374400,
+          "validTime": "2026-05-05T00:00:00-07:00",
+          "dateTimeISO": "2026-05-05T00:00:00-07:00",
+          "maxTempF": 71,
+          "minTempF": 51,
+          "pop": 0,
+          "precipMM": 0,
+          "precipIN": 0,
+          "windSpeedMaxMPH": 9,
+          "windDirMax": "SW",
+          "weather": "Sunny",
+          "icon": "clear.png"
+        }
+      ]
+    }
+  ]
+}

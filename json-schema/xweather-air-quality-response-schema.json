@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-air-quality-response-schema.json",
+  "title": "AirQualityResponse",
+  "description": "AirQualityResponse schema from Xweather Weather API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiResponse"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "object",
+          "properties": {
+            "loc": {
+              "$ref": "#/components/schemas/Location"
+            },
+            "ob": {
+              "$ref": "#/components/schemas/AirQualityObservation"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

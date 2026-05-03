@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-location-schema.json",
+  "title": "Location",
+  "description": "Location schema from Xweather Weather API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Location identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Location name."
+    },
+    "state": {
+      "type": "string",
+      "description": "State or province code."
+    },
+    "stateFull": {
+      "type": "string",
+      "description": "Full state or province name."
+    },
+    "country": {
+      "type": "string",
+      "description": "Country code (ISO 3166-1 alpha-2)."
+    },
+    "countryFull": {
+      "type": "string",
+      "description": "Full country name."
+    },
+    "lat": {
+      "type": "number",
+      "format": "float",
+      "description": "Latitude."
+    },
+    "lon": {
+      "type": "number",
+      "format": "float",
+      "description": "Longitude."
+    },
+    "elevM": {
+      "type": "number",
+      "description": "Elevation in meters."
+    },
+    "elevFT": {
+      "type": "number",
+      "description": "Elevation in feet."
+    },
+    "profile": {
+      "type": "object",
+      "description": "Additional location profile data."
+    }
+  }
+}

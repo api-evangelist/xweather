@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-lightning-response-schema.json",
+  "title": "LightningResponse",
+  "description": "LightningResponse schema from Xweather Weather API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiResponse"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "response": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "loc": {
+                "$ref": "#/components/schemas/Location"
+              },
+              "ob": {
+                "$ref": "#/components/schemas/LightningStrike"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

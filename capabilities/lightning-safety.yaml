@@ -1,0 +1,60 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Lightning Safety Automation"
+  description: >-
+    Drive automated stop-work and all-clear decisions for outdoor operations using
+    Xweather lightning strike events and lightning threat nowcasts. Designed for a
+    Safety Officer responsible for outdoor worker and public safety.
+  tags:
+    - Safety Officer
+    - Lightning
+    - Severe Weather
+    - Operations
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      XWEATHER_CLIENT_ID: XWEATHER_CLIENT_ID
+      XWEATHER_CLIENT_SECRET: XWEATHER_CLIENT_SECRET
+
+capability:
+  consumes:
+    - import: xweather-weather-api
+      location: ./shared/xweather-weather-api.yaml
+
+  exposes:
+    - type: http
+      namespace: lightning-safety
+      paths:
+        - path: /sites/{location}/lightning/strikes
+          method: GET
+          summary: Get Recent Lightning Strikes
+          description: Recent cloud-to-ground strikes near a monitored site.
+          calls:
+            - capability: xweather-weather-api.lightning.get-lightning
+              parameters:
+                location: "{location}"
+
+        - path: /sites/{location}/lightning/threat
+          method: GET
+          summary: Get Lightning Threat Nowcast
+          description: Probabilistic short-term lightning threat for a site.
+          calls:
+            - capability: xweather-weather-api.lightning.get-lightning-threats
+              parameters:
+                location: "{location}"
+
+    - type: mcp
+      namespace: lightning-safety
+      tools:
+        - name: get_recent_strikes
+          description: List recent lightning strikes near a site.
+          calls:
+            - capability: xweather-weather-api.lightning.get-lightning
+        - name: get_threat_nowcast
+          description: Get the lightning threat nowcast for a site.
+          calls:
+            - capability: xweather-weather-api.lightning.get-lightning-threats

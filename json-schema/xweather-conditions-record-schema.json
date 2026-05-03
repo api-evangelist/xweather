@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-conditions-record-schema.json",
+  "title": "ConditionsRecord",
+  "description": "ConditionsRecord schema from Xweather Weather API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Station or place identifier."
+    },
+    "loc": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "place": {
+      "type": "object",
+      "description": "Place name components."
+    },
+    "profile": {
+      "type": "object",
+      "description": "Location profile data."
+    },
+    "ob": {
+      "$ref": "#/components/schemas/ConditionsObservation"
+    },
+    "raw": {
+      "type": "string",
+      "description": "Raw METAR or observation string."
+    },
+    "relativeTo": {
+      "type": "object",
+      "description": "Distance and bearing relative to queried location."
+    }
+  }
+}

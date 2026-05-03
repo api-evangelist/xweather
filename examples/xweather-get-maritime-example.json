@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "error": null,
+  "response": [
+    {
+      "loc": { "lat": 32.7, "long": -65.5 },
+      "place": { "name": "atlantic", "country": "us" },
+      "periods": [
+        {
+          "dateTimeISO": "2026-05-03T15:00:00Z",
+          "timestamp": 1746284400,
+          "waveHeightFT": 6.2,
+          "waveHeightM": 1.9,
+          "wavePeriodS": 9,
+          "swellHeightFT": 4.8,
+          "swellPeriodS": 11,
+          "swellDirectionDEG": 95,
+          "windSpeedKTS": 18,
+          "windDirectionDEG": 110,
+          "seaSurfaceTempC": 24.6,
+          "seaSurfaceTempF": 76.3,
+          "seaState": "Moderate"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "description": "Example response from GET /alerts/{location} for Chicago, IL",
+  "request": {
+    "method": "GET",
+    "url": "https://data.api.xweather.com/alerts/chicago,il",
+    "queryParameters": {
+      "client_id": "YOUR_CLIENT_ID",
+      "client_secret": "YOUR_CLIENT_SECRET"
+    }
+  },
+  "response": {
+    "success": true,
+    "response": [
+      {
+        "id": "urn:oid:2.49.0.1.840.0.abc123",
+        "loc": {
+          "id": "chicago,il",
+          "name": "Chicago",
+          "state": "IL",
+          "country": "US",
+          "lat": 41.8781,
+          "lon": -87.6298
+        },
+        "alerts": [
+          {
+            "id": "urn:oid:2.49.0.1.840.0.abc123",
+            "type": "WIN",
+            "name": "Wind Advisory",
+            "body": "WIND ADVISORY REMAINS IN EFFECT UNTIL 6 PM CDT THIS EVENING... WHAT...South winds 25 to 35 mph with gusts up to 55 mph. WHERE...Cook and Lake Counties. WHEN...Until 6 PM CDT this evening. IMPACTS...Gusty winds could blow around unsecured objects.",
+            "timestamps": {
+              "issued": 1746252000,
+              "expires": 1746302400,
+              "updated": 1746252000
+            },
+            "areas": [
+              {
+                "name": "Cook County",
+                "state": "IL",
+                "country": "US"
+              },
+              {
+                "name": "Lake County",
+                "state": "IL",
+                "country": "US"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

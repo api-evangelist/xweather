@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-conditions-observation-schema.json",
+  "title": "ConditionsObservation",
+  "description": "ConditionsObservation schema from Xweather Weather API",
+  "type": "object",
+  "properties": {
+    "tempC": {
+      "type": "number",
+      "description": "Temperature in Celsius."
+    },
+    "tempF": {
+      "type": "number",
+      "description": "Temperature in Fahrenheit."
+    },
+    "feelslikeC": {
+      "type": "number",
+      "description": "Feels-like temperature in Celsius."
+    },
+    "feelslikeF": {
+      "type": "number",
+      "description": "Feels-like temperature in Fahrenheit."
+    },
+    "humidity": {
+      "type": "integer",
+      "description": "Relative humidity percentage."
+    },
+    "dewpointC": {
+      "type": "number",
+      "description": "Dew point in Celsius."
+    },
+    "dewpointF": {
+      "type": "number",
+      "description": "Dew point in Fahrenheit."
+    },
+    "windSpeedKPH": {
+      "type": "number",
+      "description": "Wind speed in KPH."
+    },
+    "windSpeedMPH": {
+      "type": "number",
+      "description": "Wind speed in MPH."
+    },
+    "windDir": {
+      "type": "string",
+      "description": "Wind direction abbreviation (e.g., NW)."
+    },
+    "windDirDEG": {
+      "type": "number",
+      "description": "Wind direction in degrees."
+    },
+    "pressureMB": {
+      "type": "number",
+      "description": "Pressure in millibars."
+    },
+    "pressureIN": {
+      "type": "number",
+      "description": "Pressure in inches of mercury."
+    },
+    "precipMM": {
+      "type": "number",
+      "description": "Precipitation in millimeters."
+    },
+    "precipIN": {
+      "type": "number",
+      "description": "Precipitation in inches."
+    },
+    "sky": {
+      "type": "integer",
+      "description": "Sky cover percentage."
+    },
+    "visibilityKM": {
+      "type": "number",
+      "description": "Visibility in kilometers."
+    },
+    "visibilityMI": {
+      "type": "number",
+      "description": "Visibility in miles."
+    },
+    "cloudsCoded": {
+      "type": "string",
+      "description": "Cloud coverage code."
+    },
+    "weather": {
+      "type": "string",
+      "description": "Weather description string."
+    },
+    "weatherCoded": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      },
+      "description": "Coded weather conditions array."
+    },
+    "weatherPrimary": {
+      "type": "string",
+      "description": "Primary weather condition description."
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon code for current conditions."
+    },
+    "isDay": {
+      "type": "boolean",
+      "description": "Whether it is daytime at the location."
+    },
+    "timestamp": {
+      "type": "integer",
+      "description": "Unix timestamp of the observation."
+    },
+    "dateTimeISO": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 datetime string."
+    }
+  }
+}

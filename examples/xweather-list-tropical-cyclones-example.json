@@ -1,0 +1,25 @@
+{
+  "success": true,
+  "error": null,
+  "response": [
+    {
+      "id": "AL062026",
+      "name": "Hurricane Erin",
+      "basin": "AL",
+      "stormCategory": "Hurricane Category 3",
+      "saffirSimpsonCategory": 3,
+      "active": true,
+      "loc": { "lat": 24.5, "long": -76.8 },
+      "windSpeedKTS": 110,
+      "windSpeedMPH": 127,
+      "pressureMB": 956,
+      "movement": { "directionDegrees": 315, "directionLabel": "NW", "speedKTS": 12 },
+      "advisoryNumber": 18,
+      "issuedDateTimeISO": "2026-05-03T15:00:00Z",
+      "forecast": [
+        { "validDateTimeISO": "2026-05-04T00:00:00Z", "loc": { "lat": 25.6, "long": -78.0 }, "windSpeedKTS": 115 },
+        { "validDateTimeISO": "2026-05-04T12:00:00Z", "loc": { "lat": 26.9, "long": -79.2 }, "windSpeedKTS": 100 }
+      ]
+    }
+  ]
+}

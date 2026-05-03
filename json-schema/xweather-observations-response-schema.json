@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/json-schema/xweather-observations-response-schema.json",
+  "title": "ObservationsResponse",
+  "description": "ObservationsResponse schema from Xweather Weather API",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ApiResponse"
+    },
+    {
+      "type": "object",
+      "properties": {
+        "response": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/ConditionsRecord"
+            },
+            {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ConditionsRecord"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

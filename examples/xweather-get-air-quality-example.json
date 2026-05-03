@@ -1,0 +1,26 @@
+{
+  "success": true,
+  "error": null,
+  "response": [
+    {
+      "loc": { "lat": 34.0522, "long": -118.2437 },
+      "place": { "name": "los angeles", "state": "ca", "country": "us" },
+      "periods": [
+        {
+          "dateTimeISO": "2026-05-03T12:00:00-07:00",
+          "timestamp": 1746302400,
+          "aqi": 84,
+          "category": "Moderate",
+          "color": "FFFF00",
+          "method": "airnow",
+          "primaryPollutant": "o3",
+          "pollutants": [
+            { "type": "o3", "name": "Ozone", "valuePPB": 64, "aqi": 84 },
+            { "type": "pm2.5", "name": "Particulate Matter <2.5", "valueUGM3": 12.4, "aqi": 51 },
+            { "type": "no2", "name": "Nitrogen Dioxide", "valuePPB": 18, "aqi": 17 }
+          ]
+        }
+      ]
+    }
+  ]
+}
