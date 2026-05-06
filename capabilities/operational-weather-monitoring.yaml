@@ -1,74 +1,257 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
-  label: "Operational Weather Monitoring"
-  description: >-
-    Continuously monitor a portfolio of operational sites for weather risk by combining
-    Xweather conditions, forecasts, and severe-weather alerts. Designed for an Operations
-    Manager who needs to make go/no-go and contingency decisions across many locations.
+  label: Operational Weather Monitoring
+  description: Continuously monitor a portfolio of operational sites for weather risk by combining Xweather conditions, forecasts,
+    and severe-weather alerts. Designed for an Operations Manager who needs to make go/no-go and contingency decisions across
+    many locations.
   tags:
-    - Operations Manager
-    - Weather
-    - Forecasts
-    - Severe Weather
-    - Alerts
-  created: "2026-05-03"
-  modified: "2026-05-03"
-
+  - Operations Manager
+  - Weather
+  - Forecasts
+  - Severe Weather
+  - Alerts
+  created: '2026-05-03'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      XWEATHER_CLIENT_ID: XWEATHER_CLIENT_ID
-      XWEATHER_CLIENT_SECRET: XWEATHER_CLIENT_SECRET
-
+- namespace: env
+  keys:
+    XWEATHER_CLIENT_ID: XWEATHER_CLIENT_ID
+    XWEATHER_CLIENT_SECRET: XWEATHER_CLIENT_SECRET
 capability:
   consumes:
-    - import: xweather-weather-api
-      location: ./shared/xweather-weather-api.yaml
-
+  - type: http
+    namespace: xweather-weather-api
+    baseUri: https://data.api.xweather.com
+    description: Xweather Weather API base endpoint.
+    authentication:
+      type: query
+      parameters:
+      - name: client_id
+        value: '{{env.XWEATHER_CLIENT_ID}}'
+      - name: client_secret
+        value: '{{env.XWEATHER_CLIENT_SECRET}}'
+    resources:
+    - name: conditions
+      path: /conditions
+      description: Current and historical surface weather conditions.
+      operations:
+      - name: get-conditions
+        method: GET
+        path: /conditions/{location}
+        description: Get current weather conditions for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+          description: Location identifier (ZIP, city/state, lat/long, place, station).
+        - name: fields
+          in: query
+          type: string
+          required: false
+        - name: filter
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+    - name: forecasts
+      path: /forecasts
+      description: Hourly and daily weather forecasts.
+      operations:
+      - name: get-forecasts
+        method: GET
+        path: /forecasts/{location}
+        description: Get forecast records for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        - name: filter
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+    - name: alerts
+      path: /alerts
+      description: Severe weather alerts and warnings.
+      operations:
+      - name: get-alerts
+        method: GET
+        path: /alerts/{location}
+        description: Get active severe weather alerts for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        - name: filter
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+    - name: lightning
+      path: /lightning
+      description: Lightning strike events and threat nowcasts.
+      operations:
+      - name: get-lightning
+        method: GET
+        path: /lightning/{location}
+        description: Get recent lightning strike events near a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        - name: from
+          in: query
+          type: string
+          required: false
+        - name: to
+          in: query
+          type: string
+          required: false
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+      - name: get-lightning-threats
+        method: GET
+        path: /lightning/threats/{location}
+        description: Get lightning threat nowcast for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+    - name: air-quality
+      path: /airquality
+      description: Air quality index and pollutant data.
+      operations:
+      - name: get-air-quality
+        method: GET
+        path: /airquality/{location}
+        description: Get current air quality and primary pollutant for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
+    - name: observations
+      path: /observations
+      description: Reports from individual surface weather stations.
+      operations:
+      - name: get-observations
+        method: GET
+        path: /observations/{location}
+        description: Get the most recent observation from a station near the location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        - name: filter
+          in: query
+          type: string
+          required: false
+        outputRawFormat: json
+    - name: fires
+      path: /fires
+      description: Active wildfire incidents.
+      operations:
+      - name: get-wildfires
+        method: GET
+        path: /fires/{location}
+        description: Get active wildfires near a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+    - name: tropical
+      path: /tropicalcyclones
+      description: Tropical cyclone tracks and intensities.
+      operations:
+      - name: list-tropical-cyclones
+        method: GET
+        path: /tropicalcyclones
+        description: List currently active tropical cyclones globally.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          required: false
+        outputRawFormat: json
+    - name: maritime
+      path: /maritime
+      description: Marine and ocean weather conditions.
+      operations:
+      - name: get-maritime-conditions
+        method: GET
+        path: /maritime/{location}
+        description: Get marine weather conditions (waves, swell, SST) for a location.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          required: true
+        outputRawFormat: json
   exposes:
-    - type: http
-      namespace: weather-monitoring
-      paths:
-        - path: /sites/{location}/conditions
-          method: GET
-          summary: Get Site Conditions
-          description: Get current conditions for a monitored site.
-          calls:
-            - capability: xweather-weather-api.conditions.get-conditions
-              parameters:
-                location: "{location}"
-
-        - path: /sites/{location}/forecast
-          method: GET
-          summary: Get Site Forecast
-          description: Get the forecast for a monitored site.
-          calls:
-            - capability: xweather-weather-api.forecasts.get-forecasts
-              parameters:
-                location: "{location}"
-
-        - path: /sites/{location}/alerts
-          method: GET
-          summary: Get Site Alerts
-          description: Get active severe weather alerts for a monitored site.
-          calls:
-            - capability: xweather-weather-api.alerts.get-alerts
-              parameters:
-                location: "{location}"
-
-    - type: mcp
-      namespace: weather-monitoring
-      tools:
-        - name: get_site_conditions
-          description: Get current conditions for a site.
-          calls:
-            - capability: xweather-weather-api.conditions.get-conditions
-        - name: get_site_forecast
-          description: Get forecast for a site.
-          calls:
-            - capability: xweather-weather-api.forecasts.get-forecasts
-        - name: get_site_alerts
-          description: Get severe weather alerts for a site.
-          calls:
-            - capability: xweather-weather-api.alerts.get-alerts
+  - type: http
+    namespace: weather-monitoring
+    paths:
+    - path: /sites/{location}/conditions
+      method: GET
+      summary: Get Site Conditions
+      description: Get current conditions for a monitored site.
+      calls:
+      - capability: xweather-weather-api.conditions.get-conditions
+        parameters:
+          location: '{location}'
+    - path: /sites/{location}/forecast
+      method: GET
+      summary: Get Site Forecast
+      description: Get the forecast for a monitored site.
+      calls:
+      - capability: xweather-weather-api.forecasts.get-forecasts
+        parameters:
+          location: '{location}'
+    - path: /sites/{location}/alerts
+      method: GET
+      summary: Get Site Alerts
+      description: Get active severe weather alerts for a monitored site.
+      calls:
+      - capability: xweather-weather-api.alerts.get-alerts
+        parameters:
+          location: '{location}'
+  - type: mcp
+    namespace: weather-monitoring
+    tools:
+    - name: get_site_conditions
+      description: Get current conditions for a site.
+      calls:
+      - capability: xweather-weather-api.conditions.get-conditions
+    - name: get_site_forecast
+      description: Get forecast for a site.
+      calls:
+      - capability: xweather-weather-api.forecasts.get-forecasts
+    - name: get_site_alerts
+      description: Get severe weather alerts for a site.
+      calls:
+      - capability: xweather-weather-api.alerts.get-alerts
