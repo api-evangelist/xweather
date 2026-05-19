@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xweather Weather API — Conditions
+  description: 'Xweather Weather API — Conditions. 1 operations. Lead operation: Get Current Conditions. Self-contained Naftiko
+    capability covering one Xweather business surface.'
+  tags:
+  - Xweather
+  - Conditions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XWEATHER_API_KEY: XWEATHER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: weather-conditions
+    baseUri: https://data.api.xweather.com
+    description: Xweather Weather API — Conditions business capability. Self-contained, no shared references.
+    resources:
+    - name: conditions-location
+      path: /conditions/{location}
+      operations:
+      - name: getconditions
+        method: GET
+        description: Get Current Conditions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          description: Location identifier (ZIP code, city name, lat/long, or place name).
+          required: true
+        - name: client_id
+          in: query
+          type: string
+          description: Your Xweather API client ID.
+          required: true
+        - name: client_secret
+          in: query
+          type: string
+          description: Your Xweather API client secret.
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return.
+        - name: filter
+          in: query
+          type: string
+          description: Filter results (e.g., allstations).
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of results to return.
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.XWEATHER_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: weather-conditions-rest
+    port: 8080
+    description: REST adapter for Xweather Weather API — Conditions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/conditions/{location}
+      name: conditions-location
+      description: REST surface for conditions-location.
+      operations:
+      - method: GET
+        name: getconditions
+        description: Get Current Conditions
+        call: weather-conditions.getconditions
+        with:
+          location: rest.location
+          client_id: rest.client_id
+          client_secret: rest.client_secret
+          fields: rest.fields
+          filter: rest.filter
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: weather-conditions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xweather Weather API — Conditions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-current-conditions
+      description: Get Current Conditions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: weather-conditions.getconditions
+      with:
+        location: tools.location
+        client_id: tools.client_id
+        client_secret: tools.client_secret
+        fields: tools.fields
+        filter: tools.filter
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xweather Weather API — Observations
+  description: 'Xweather Weather API — Observations. 1 operations. Lead operation: Get Weather Observations. Self-contained
+    Naftiko capability covering one Xweather business surface.'
+  tags:
+  - Xweather
+  - Observations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XWEATHER_API_KEY: XWEATHER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: weather-observations
+    baseUri: https://data.api.xweather.com
+    description: Xweather Weather API — Observations business capability. Self-contained, no shared references.
+    resources:
+    - name: observations-location
+      path: /observations/{location}
+      operations:
+      - name: getobservations
+        method: GET
+        description: Get Weather Observations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          description: Location identifier (city, ZIP code, ICAO code, lat/long).
+          required: true
+        - name: client_id
+          in: query
+          type: string
+          description: Your Xweather API client ID.
+          required: true
+        - name: client_secret
+          in: query
+          type: string
+          description: Your Xweather API client secret.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: Filter results (e.g., allstations, metar).
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of observations to return.
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return.
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.XWEATHER_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: weather-observations-rest
+    port: 8080
+    description: REST adapter for Xweather Weather API — Observations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/observations/{location}
+      name: observations-location
+      description: REST surface for observations-location.
+      operations:
+      - method: GET
+        name: getobservations
+        description: Get Weather Observations
+        call: weather-observations.getobservations
+        with:
+          location: rest.location
+          client_id: rest.client_id
+          client_secret: rest.client_secret
+          filter: rest.filter
+          limit: rest.limit
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: weather-observations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xweather Weather API — Observations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-weather-observations
+      description: Get Weather Observations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: weather-observations.getobservations
+      with:
+        location: tools.location
+        client_id: tools.client_id
+        client_secret: tools.client_secret
+        filter: tools.filter
+        limit: tools.limit
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.

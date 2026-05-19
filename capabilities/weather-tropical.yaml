@@ -1,0 +1,101 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xweather Weather API — Tropical
+  description: 'Xweather Weather API — Tropical. 1 operations. Lead operation: List Tropical Cyclones. Self-contained Naftiko
+    capability covering one Xweather business surface.'
+  tags:
+  - Xweather
+  - Tropical
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XWEATHER_API_KEY: XWEATHER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: weather-tropical
+    baseUri: https://data.api.xweather.com
+    description: Xweather Weather API — Tropical business capability. Self-contained, no shared references.
+    resources:
+    - name: tropical-cyclones
+      path: /tropical/cyclones
+      operations:
+      - name: listtropicalcyclones
+        method: GET
+        description: List Tropical Cyclones
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: client_id
+          in: query
+          type: string
+          description: Your Xweather API client ID.
+          required: true
+        - name: client_secret
+          in: query
+          type: string
+          description: Your Xweather API client secret.
+          required: true
+        - name: filter
+          in: query
+          type: string
+          description: Filter by active or archive cyclones.
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of cyclones to return.
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.XWEATHER_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: weather-tropical-rest
+    port: 8080
+    description: REST adapter for Xweather Weather API — Tropical. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tropical/cyclones
+      name: tropical-cyclones
+      description: REST surface for tropical-cyclones.
+      operations:
+      - method: GET
+        name: listtropicalcyclones
+        description: List Tropical Cyclones
+        call: weather-tropical.listtropicalcyclones
+        with:
+          client_id: rest.client_id
+          client_secret: rest.client_secret
+          filter: rest.filter
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: weather-tropical-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xweather Weather API — Tropical. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: list-tropical-cyclones
+      description: List Tropical Cyclones
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: weather-tropical.listtropicalcyclones
+      with:
+        client_id: tools.client_id
+        client_secret: tools.client_secret
+        filter: tools.filter
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

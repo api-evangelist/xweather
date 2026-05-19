@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Xweather Weather API — Air Quality
+  description: 'Xweather Weather API — Air Quality. 1 operations. Lead operation: Get Air Quality Data. Self-contained Naftiko
+    capability covering one Xweather business surface.'
+  tags:
+  - Xweather
+  - Air Quality
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    XWEATHER_API_KEY: XWEATHER_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: weather-air-quality
+    baseUri: https://data.api.xweather.com
+    description: Xweather Weather API — Air Quality business capability. Self-contained, no shared references.
+    resources:
+    - name: airquality-location
+      path: /airquality/{location}
+      operations:
+      - name: getairquality
+        method: GET
+        description: Get Air Quality Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: location
+          in: path
+          type: string
+          description: Location identifier (ZIP code, city name, lat/long).
+          required: true
+        - name: client_id
+          in: query
+          type: string
+          description: Your Xweather API client ID.
+          required: true
+        - name: client_secret
+          in: query
+          type: string
+          description: Your Xweather API client secret.
+          required: true
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of fields to return.
+    authentication:
+      type: apikey
+      key: client_id
+      value: '{{env.XWEATHER_API_KEY}}'
+      placement: query
+  exposes:
+  - type: rest
+    namespace: weather-air-quality-rest
+    port: 8080
+    description: REST adapter for Xweather Weather API — Air Quality. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/airquality/{location}
+      name: airquality-location
+      description: REST surface for airquality-location.
+      operations:
+      - method: GET
+        name: getairquality
+        description: Get Air Quality Data
+        call: weather-air-quality.getairquality
+        with:
+          location: rest.location
+          client_id: rest.client_id
+          client_secret: rest.client_secret
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: weather-air-quality-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Xweather Weather API — Air Quality. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-air-quality-data
+      description: Get Air Quality Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: weather-air-quality.getairquality
+      with:
+        location: tools.location
+        client_id: tools.client_id
+        client_secret: tools.client_secret
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
