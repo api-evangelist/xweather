@@ -1,0 +1,514 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xweather Weather API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Conditions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Current Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/conditions/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "seattle,wa",
+                "type": "path",
+                "description": "Location identifier (ZIP code, city name, lat/long, or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter results (e.g., allstations)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return."
+              }
+            ]
+          },
+          "docs": "Returns current weather conditions for a specified location including temperature, humidity, wind, precipitation, and more."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Forecasts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Weather Forecasts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/forecasts/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "new-york,ny",
+                "type": "path",
+                "description": "Location identifier (ZIP code, city name, lat/long, or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Forecast interval filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of forecast periods to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns weather forecast data for a specified location including hourly and daily forecasts."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Weather Alerts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/alerts/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "chicago,il",
+                "type": "path",
+                "description": "Location identifier (ZIP code, city name, lat/long, or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter by alert type (e.g., tornado, flood)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of alerts to return."
+              }
+            ]
+          },
+          "docs": "Returns active weather alerts and advisories for a specified location from the National Weather Service, Environment Canada, and MeteoAlarm."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lightning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Lightning Strike Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/lightning/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "40.7128,-74.0060",
+                "type": "path",
+                "description": "Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\")."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of lightning strikes to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes."
+        },
+        {
+          "info": {
+            "name": "Get Lightning Threat Nowcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/lightning/threats/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "dallas,tx",
+                "type": "path",
+                "description": "Location identifier (lat/long or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              }
+            ]
+          },
+          "docs": "Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Air Quality",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Air Quality Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/airquality/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "los-angeles,ca",
+                "type": "path",
+                "description": "Location identifier (ZIP code, city name, lat/long)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns current and forecast Air Quality Index (AQI), Health Index (AQHI), and individual pollutant concentrations for a location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Observations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Weather Observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/observations/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "KSEA",
+                "type": "path",
+                "description": "Location identifier (city, ZIP code, ICAO code, lat/long)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter results (e.g., allstations, metar)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of observations to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns current weather observations from METAR stations and other reporting stations near the specified location."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Fires",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Wildfire Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/fires/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "california",
+                "type": "path",
+                "description": "Location identifier or state/province code."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of fire records to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns active and historical wildfire data for the US and Canada including type, cause, area, and percent contained."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tropical",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Tropical Cyclones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/tropical/cyclones",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter by active or archive cyclones."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of cyclones to return."
+              }
+            ]
+          },
+          "docs": "Returns active and archive information on global tropical cyclones including category, track, and intensity data."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Maritime",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Maritime Weather Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/maritime/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "47.5,-124.6",
+                "type": "path",
+                "description": "Location identifier (lat/long or coastal place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns global marine weather data including wave height, sea surface temperature, swell, and wind for navigation and offshore operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

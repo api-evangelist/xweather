@@ -1,0 +1,3335 @@
+{
+  "item": [
+    {
+      "id": "b1eb16b3-ad51-44a5-8ada-cabe4b4b43f3",
+      "name": "Conditions",
+      "description": {
+        "content": "Current and historical weather conditions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "562d160b-4d2b-4c71-b039-e785bdf55b66",
+          "name": "Get Current Conditions",
+          "request": {
+            "name": "Get Current Conditions",
+            "description": {
+              "content": "Returns current weather conditions for a specified location including temperature, humidity, wind, precipitation, and more.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "conditions",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter results (e.g., allstations)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b203a55e-5a4f-48ca-a18f-76eb76b694dd",
+              "name": "Current weather conditions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conditions",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": {\n    \"id\": \"string\",\n    \"loc\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"stateFull\": \"string\",\n      \"country\": \"string\",\n      \"countryFull\": \"string\",\n      \"lat\": 3752.2207320482294,\n      \"lon\": 8791.474627061429,\n      \"elevM\": 3115.2405247593183,\n      \"elevFT\": 9378.760517803374,\n      \"profile\": {}\n    },\n    \"place\": {},\n    \"profile\": {},\n    \"ob\": {\n      \"tempC\": 3514.4982852552453,\n      \"tempF\": 2144.5556359214347,\n      \"feelslikeC\": 2625.3288882336633,\n      \"feelslikeF\": 3230.023489448992,\n      \"humidity\": 2828,\n      \"dewpointC\": 3675.030540066335,\n      \"dewpointF\": 6744.348144189292,\n      \"windSpeedKPH\": 6750.573240207603,\n      \"windSpeedMPH\": 5886.36373030742,\n      \"windDir\": \"string\",\n      \"windDirDEG\": 4500.393277636686,\n      \"pressureMB\": 9876.681616775017,\n      \"pressureIN\": 7018.233870731935,\n      \"precipMM\": 6512.524689083354,\n      \"precipIN\": 7308.048583873118,\n      \"sky\": 8960,\n      \"visibilityKM\": 6804.743603597681,\n      \"visibilityMI\": 8302.219917757198,\n      \"cloudsCoded\": \"string\",\n      \"weather\": \"string\",\n      \"weatherPrimary\": \"string\",\n      \"icon\": \"string\",\n      \"isDay\": true,\n      \"timestamp\": 3220,\n      \"dateTimeISO\": \"1967-02-23T11:10:04.337Z\"\n    },\n    \"raw\": \"string\",\n    \"relativeTo\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd184d2-a32a-4211-aa3c-fa124b61b920",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conditions",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0a63618-de97-44ac-a258-29faa99e97c2",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conditions",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6933a5ab-f3e5-4197-9c21-79ebff1e5c3c",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "conditions",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "aa406a7a-98ba-4a55-bc79-9ab9720cd136",
+      "name": "Forecasts",
+      "description": {
+        "content": "Weather forecasts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "95fe8ccc-3392-47f4-b77c-17f5cb64dfcb",
+          "name": "Get Weather Forecasts",
+          "request": {
+            "name": "Get Weather Forecasts",
+            "description": {
+              "content": "Returns weather forecast data for a specified location including hourly and daily forecasts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forecasts",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Forecast interval filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Number of forecast periods to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cec04532-5b39-4eed-8e71-95b81e0775ca",
+              "name": "Weather forecast data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecasts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": {\n    \"loc\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"stateFull\": \"string\",\n      \"country\": \"string\",\n      \"countryFull\": \"string\",\n      \"lat\": 7211.922662664694,\n      \"lon\": 3105.4831712791274,\n      \"elevM\": 5069.514318640043,\n      \"elevFT\": 3189.939395781306,\n      \"profile\": {}\n    },\n    \"periods\": [\n      {\n        \"timestamp\": 9416,\n        \"dateTimeISO\": \"1970-09-13T07:28:57.996Z\",\n        \"maxTempC\": 9815.222746791036,\n        \"maxTempF\": 3018.084525794429,\n        \"minTempC\": 2483.8358055976105,\n        \"minTempF\": 8909.357464733479,\n        \"avgTempC\": 5792.203688418583,\n        \"avgTempF\": 8196.706417178666,\n        \"precipMM\": 616.3517652937522,\n        \"precipIN\": 3761.021036526383,\n        \"pop\": 3309,\n        \"humidity\": 2933,\n        \"windSpeedKPH\": 4433.192980041552,\n        \"windSpeedMPH\": 9207.989541798359,\n        \"windDir\": \"string\",\n        \"windDirDEG\": 4156.885820171129,\n        \"weather\": \"string\",\n        \"icon\": \"string\",\n        \"isDay\": true\n      },\n      {\n        \"timestamp\": 9758,\n        \"dateTimeISO\": \"2025-09-15T09:17:11.949Z\",\n        \"maxTempC\": 1178.6162916229482,\n        \"maxTempF\": 9844.559069851959,\n        \"minTempC\": 4879.697240374611,\n        \"minTempF\": 8767.448096982935,\n        \"avgTempC\": 5701.340154605629,\n        \"avgTempF\": 3966.8622950650965,\n        \"precipMM\": 1227.7861825698587,\n        \"precipIN\": 8555.377014806778,\n        \"pop\": 1586,\n        \"humidity\": 40,\n        \"windSpeedKPH\": 9782.829360466714,\n        \"windSpeedMPH\": 7951.903810420872,\n        \"windDir\": \"string\",\n        \"windDirDEG\": 6748.210840079536,\n        \"weather\": \"string\",\n        \"icon\": \"string\",\n        \"isDay\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8089aad-224f-437d-a592-017d677d6abd",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecasts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d6b349b-e13e-4745-9851-a982d733fb8b",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecasts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "332f43ec-ae62-4e86-a623-7c294ab23c9f",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forecasts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bb915b65-bf28-4071-b64f-c29194ef9d49",
+      "name": "Alerts",
+      "description": {
+        "content": "Severe weather alerts and warnings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9c35777c-4215-45be-900b-7e275daa254a",
+          "name": "Get Weather Alerts",
+          "request": {
+            "name": "Get Weather Alerts",
+            "description": {
+              "content": "Returns active weather alerts and advisories for a specified location from the National Weather Service, Environment Canada, and MeteoAlarm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "alerts",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter by alert type (e.g., tornado, flood)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of alerts to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ca22a6c-cd6c-4a56-94da-4a8969517d35",
+              "name": "Active weather alerts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 8039.343915763782,\n        \"lon\": 8239.631466769413,\n        \"elevM\": 5944.615014882814,\n        \"elevFT\": 2528.7701816923504,\n        \"profile\": {}\n      },\n      \"alerts\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"body\": \"string\",\n          \"timestamps\": {\n            \"issued\": 9458,\n            \"expires\": 8259,\n            \"updated\": 4142\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"body\": \"string\",\n          \"timestamps\": {\n            \"issued\": 9990,\n            \"expires\": 480,\n            \"updated\": 5093\n          }\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 9322.226847170401,\n        \"lon\": 5484.2448043060685,\n        \"elevM\": 5007.262173319731,\n        \"elevFT\": 1250.2438102771928,\n        \"profile\": {}\n      },\n      \"alerts\": [\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"body\": \"string\",\n          \"timestamps\": {\n            \"issued\": 2454,\n            \"expires\": 2441,\n            \"updated\": 8617\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"type\": \"string\",\n          \"name\": \"string\",\n          \"body\": \"string\",\n          \"timestamps\": {\n            \"issued\": 9192,\n            \"expires\": 5160,\n            \"updated\": 3221\n          }\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a79a985-4508-40f2-b992-f652a789e2be",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "927c5689-ad04-43b7-9db6-b4a5a924ea17",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c175c13-3553-4b15-be6a-bbbc3eae9dd1",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "alerts",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long, or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "60618ce6-1947-49ff-92b4-b85f52f790b4",
+      "name": "Lightning",
+      "description": {
+        "content": "Lightning strike data and nowcasts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b1be563-0bab-48e9-9faf-ce81dab30429",
+          "name": "Get Lightning Strike Data",
+          "request": {
+            "name": "Get Lightning Strike Data",
+            "description": {
+              "content": "Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lightning",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "<string>",
+                  "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\")."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of lightning strikes to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "16c60763-b11e-4b9e-b08b-4f9ab0691d79",
+              "name": "Lightning strike data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 6241.607007993754,\n        \"lon\": 3753.3506112659334,\n        \"elevM\": 535.3152840697684,\n        \"elevFT\": 7427.891176600151,\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"string\",\n        \"lat\": 73.95790278570402,\n        \"lon\": 6057.699564972,\n        \"timestamp\": 6284,\n        \"dateTimeISO\": \"1957-09-20T07:47:01.205Z\",\n        \"type\": \"string\",\n        \"polarity\": \"-\",\n        \"peakAmpKA\": 6937.195485153224,\n        \"ic\": true\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 8388.944130481941,\n        \"lon\": 4598.93522817903,\n        \"elevM\": 7559.468004402732,\n        \"elevFT\": 9398.426822632691,\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"string\",\n        \"lat\": 9953.845074801933,\n        \"lon\": 6743.55639913955,\n        \"timestamp\": 1187,\n        \"dateTimeISO\": \"1963-06-25T00:37:16.617Z\",\n        \"type\": \"string\",\n        \"polarity\": \"+\",\n        \"peakAmpKA\": 187.4505839757179,\n        \"ic\": true\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3199188-5833-45a1-bdbd-007086f4642f",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42cf23da-a6b7-4edf-9f89-1e64f3df8078",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c158f755-2348-4753-a825-caa1c6819b37",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55e59a73-45c7-4cc1-bc25-7a6a471a7087",
+          "name": "Get Lightning Threat Nowcast",
+          "request": {
+            "name": "Get Lightning Threat Nowcast",
+            "description": {
+              "content": "Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lightning",
+                "threats",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (lat/long or place name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8c20008c-adff-42dc-8cca-83b3306e43ed",
+              "name": "Lightning threat nowcast data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    "threats",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b816b127-4beb-4366-9e07-0f6cf568e7f7",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    "threats",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8558de1d-a359-45a6-8459-cc5057f4903b",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    "threats",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "163d6d05-ba8e-422e-aeff-c5ac8c6350e8",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lightning",
+                    "threats",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "18322012-0137-468a-9447-620454ca470c",
+      "name": "Air Quality",
+      "description": {
+        "content": "Air quality index and pollutant data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "134be1f5-3e43-4611-9337-a8c821f4358f",
+          "name": "Get Air Quality Data",
+          "request": {
+            "name": "Get Air Quality Data",
+            "description": {
+              "content": "Returns current and forecast Air Quality Index (AQI), Health Index (AQHI), and individual pollutant concentrations for a location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "airquality",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (ZIP code, city name, lat/long)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "91927472-c491-4c83-a867-c7a9246d9c59",
+              "name": "Air quality data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airquality",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": {\n    \"loc\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"stateFull\": \"string\",\n      \"country\": \"string\",\n      \"countryFull\": \"string\",\n      \"lat\": 3842.2214478204087,\n      \"lon\": 8397.07175337565,\n      \"elevM\": 9585.44977060002,\n      \"elevFT\": 4650.058274912984,\n      \"profile\": {}\n    },\n    \"ob\": {\n      \"aqi\": 7101,\n      \"category\": \"string\",\n      \"pollutants\": {\n        \"o3\": {},\n        \"pm25\": {},\n        \"pm10\": {},\n        \"co\": {},\n        \"no2\": {},\n        \"so2\": {}\n      },\n      \"timestamp\": 4265,\n      \"dateTimeISO\": \"1992-10-07T00:08:32.420Z\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60d1f9d3-5201-4ccb-854c-b74fc11bc3f7",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airquality",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c5734d9-351a-4c02-b1bd-b8e72ade3916",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airquality",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df9e0ae9-7619-4472-9157-9d9160194d97",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "airquality",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (ZIP code, city name, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ff16b45d-ca0d-4e7f-8205-418960ba8cde",
+      "name": "Maritime",
+      "description": {
+        "content": "Marine and ocean weather data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c24f647-0f33-4ac7-af4f-7188aec767e1",
+          "name": "Get Maritime Weather Conditions",
+          "request": {
+            "name": "Get Maritime Weather Conditions",
+            "description": {
+              "content": "Returns global marine weather data including wave height, sea surface temperature, swell, and wind for navigation and offshore operations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "maritime",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (lat/long or coastal place name)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3db6df3-71d9-48a6-9312-0454a3737da2",
+              "name": "Maritime weather conditions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maritime",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or coastal place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": {\n    \"loc\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"stateFull\": \"string\",\n      \"country\": \"string\",\n      \"countryFull\": \"string\",\n      \"lat\": 3868.516671698766,\n      \"lon\": 9471.870790936318,\n      \"elevM\": 54.507442224979165,\n      \"elevFT\": 3902.976958796189,\n      \"profile\": {}\n    },\n    \"ob\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9767ffff-d624-4cc1-85b1-5070d19235ec",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maritime",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or coastal place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8df19ab3-4e0e-4106-bfe5-93031083f75b",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maritime",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or coastal place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0431d782-e67b-48eb-b7fe-0ee16b20e2ff",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "maritime",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (lat/long or coastal place name)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d33c8492-1a47-4d7d-a3e3-92a776528aab",
+      "name": "Fires",
+      "description": {
+        "content": "Wildfire data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "539d1576-519d-4e4a-9549-70b2c183c0d0",
+          "name": "Get Wildfire Data",
+          "request": {
+            "name": "Get Wildfire Data",
+            "description": {
+              "content": "Returns active and historical wildfire data for the US and Canada including type, cause, area, and percent contained.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "fires",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of fire records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier or state/province code."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02a17cf1-2718-4ab5-a112-0c1341d26e0f",
+              "name": "Wildfire data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fires",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or state/province code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"lat\": 1859.8025438055743,\n      \"lon\": 4493.354388956257,\n      \"areaAcres\": 4672.253084781156,\n      \"areaHectares\": 1554.2662702871512,\n      \"containedPercent\": 8504,\n      \"cause\": \"string\",\n      \"type\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"country\": \"string\",\n      \"lat\": 962.6061822690112,\n      \"lon\": 5716.614021976116,\n      \"areaAcres\": 6121.189724954552,\n      \"areaHectares\": 9936.100126255782,\n      \"containedPercent\": 1760,\n      \"cause\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10a69942-fd5c-4239-b615-b6b376c4dbf7",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fires",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or state/province code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2b54a97-f251-460e-8dfe-bee486c0303e",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fires",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or state/province code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55856d39-ab39-4b9d-bb88-075e78c29b9c",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "fires",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier or state/province code."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "0489e30a-5b08-4ff9-8e13-5d902a2e0f56",
+      "name": "Tropical",
+      "description": {
+        "content": "Tropical cyclone and hurricane data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4bf5ad3f-9f68-46bd-bb86-4a8342e4ae96",
+          "name": "List Tropical Cyclones",
+          "request": {
+            "name": "List Tropical Cyclones",
+            "description": {
+              "content": "Returns active and archive information on global tropical cyclones including category, track, and intensity data.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tropical",
+                "cyclones"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter by active or archive cyclones."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of cyclones to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b0248a4-3725-488e-a87a-da6f44f40242",
+              "name": "Tropical cyclone data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tropical",
+                    "cyclones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"basin\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"basin\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6052dd-908d-4d90-92d9-28dfce1028a2",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tropical",
+                    "cyclones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4c8ad65-5e5f-4aef-a625-c390b0f03b15",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tropical",
+                    "cyclones"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cf697fd8-2d92-4d61-8124-479ac357f580",
+      "name": "Observations",
+      "description": {
+        "content": "Weather station observations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30de38fe-ac3c-4095-b405-8e7a993a23c0",
+          "name": "Get Weather Observations",
+          "request": {
+            "name": "Get Weather Observations",
+            "description": {
+              "content": "Returns current weather observations from METAR stations and other reporting stations near the specified location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "observations",
+                ":location"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>",
+                  "description": "(Required) Your Xweather API client secret."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Filter results (e.g., allstations, metar)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Maximum number of observations to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "fields",
+                  "value": "<string>",
+                  "description": "Comma-separated list of fields to return."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "location",
+                  "description": "(Required) Location identifier (city, ZIP code, ICAO code, lat/long)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d68779b3-7cb0-4f5f-8091-5060cd97543d",
+              "name": "Weather observations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observations",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (city, ZIP code, ICAO code, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": {\n    \"id\": \"string\",\n    \"loc\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"stateFull\": \"string\",\n      \"country\": \"string\",\n      \"countryFull\": \"string\",\n      \"lat\": 3752.2207320482294,\n      \"lon\": 8791.474627061429,\n      \"elevM\": 3115.2405247593183,\n      \"elevFT\": 9378.760517803374,\n      \"profile\": {}\n    },\n    \"place\": {},\n    \"profile\": {},\n    \"ob\": {\n      \"tempC\": 3514.4982852552453,\n      \"tempF\": 2144.5556359214347,\n      \"feelslikeC\": 2625.3288882336633,\n      \"feelslikeF\": 3230.023489448992,\n      \"humidity\": 2828,\n      \"dewpointC\": 3675.030540066335,\n      \"dewpointF\": 6744.348144189292,\n      \"windSpeedKPH\": 6750.573240207603,\n      \"windSpeedMPH\": 5886.36373030742,\n      \"windDir\": \"string\",\n      \"windDirDEG\": 4500.393277636686,\n      \"pressureMB\": 9876.681616775017,\n      \"pressureIN\": 7018.233870731935,\n      \"precipMM\": 6512.524689083354,\n      \"precipIN\": 7308.048583873118,\n      \"sky\": 8960,\n      \"visibilityKM\": 6804.743603597681,\n      \"visibilityMI\": 8302.219917757198,\n      \"cloudsCoded\": \"string\",\n      \"weather\": \"string\",\n      \"weatherPrimary\": \"string\",\n      \"icon\": \"string\",\n      \"isDay\": true,\n      \"timestamp\": 3220,\n      \"dateTimeISO\": \"1967-02-23T11:10:04.337Z\"\n    },\n    \"raw\": \"string\",\n    \"relativeTo\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9c7a7237-ef38-4144-a969-a8805191af96",
+              "name": "Bad request - invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observations",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (city, ZIP code, ICAO code, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "449e95c7-1338-4d17-acad-61686472ea78",
+              "name": "Unauthorized - invalid client ID or secret",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observations",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (city, ZIP code, ICAO code, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73b83f7d-0ab9-4e53-8509-21aa850e20a1",
+              "name": "Not found - location or resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "observations",
+                    ":location"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "location",
+                      "description": "(Required) Location identifier (city, ZIP code, ICAO code, lat/long)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.api.xweather.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "client_id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "62a7273e-05d2-4b18-b903-292ce86735c1",
+    "name": "Xweather Weather API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.\n\nContact Support:\n Name: Xweather Support",
+      "type": "text/plain"
+    }
+  }
+}
