@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/xweather-weather-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - query
+schemes:
+- name: clientAuth
+  type: apiKey
+  in: query
+  parameter: client_id
+  description: Xweather uses client_id and client_secret query parameters for authentication.
+    Both are required on every request.
+  sources:
+  - openapi/xweather-weather-api-openapi.yml

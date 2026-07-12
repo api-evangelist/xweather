@@ -54,6 +54,10 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/openapi/xweather-weather-api-openapi.yml
 common:
+  - type: DomainSecurity
+    url: security/xweather-domain-security.yml
+  - type: Authentication
+    url: authentication/xweather-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/vaisala-xweather
   - type: LinkedIn
