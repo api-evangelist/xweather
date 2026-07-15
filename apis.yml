@@ -54,6 +54,8 @@ apis:
         url: >-
           https://raw.githubusercontent.com/api-evangelist/xweather/refs/heads/main/openapi/xweather-weather-api-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/xweather-agentic-access.yml
   - type: DomainSecurity
     url: security/xweather-domain-security.yml
   - type: Authentication
