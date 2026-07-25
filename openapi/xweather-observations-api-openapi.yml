@@ -1,0 +1,279 @@
+openapi: 3.1.0
+info:
+  title: Xweather Weather Air Quality Observations API
+  description: The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.
+  version: 1.0.0
+  contact:
+    name: Xweather Support
+    url: https://www.xweather.com/support
+  termsOfService: https://www.xweather.com/legal/terms
+servers:
+- url: https://data.api.xweather.com
+  description: Xweather Weather API base URL
+security:
+- clientAuth: []
+tags:
+- name: Observations
+  description: Weather station observations
+paths:
+  /observations/{location}:
+    get:
+      operationId: getObservations
+      summary: Get Weather Observations
+      description: Returns current weather observations from METAR stations and other reporting stations near the specified location.
+      tags:
+      - Observations
+      parameters:
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Location identifier (city, ZIP code, ICAO code, lat/long).
+        example: KSEA
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client ID.
+      - name: client_secret
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client secret.
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter results (e.g., allstations, metar).
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Maximum number of observations to return.
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Weather observations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObservationsResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+  schemas:
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Location identifier.
+        name:
+          type: string
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
+    ConditionsObservation:
+      type: object
+      properties:
+        tempC:
+          type: number
+          description: Temperature in Celsius.
+        tempF:
+          type: number
+          description: Temperature in Fahrenheit.
+        feelslikeC:
+          type: number
+          description: Feels-like temperature in Celsius.
+        feelslikeF:
+          type: number
+          description: Feels-like temperature in Fahrenheit.
+        humidity:
+          type: integer
+          description: Relative humidity percentage.
+        dewpointC:
+          type: number
+          description: Dew point in Celsius.
+        dewpointF:
+          type: number
+          description: Dew point in Fahrenheit.
+        windSpeedKPH:
+          type: number
+          description: Wind speed in KPH.
+        windSpeedMPH:
+          type: number
+          description: Wind speed in MPH.
+        windDir:
+          type: string
+          description: Wind direction abbreviation (e.g., NW).
+        windDirDEG:
+          type: number
+          description: Wind direction in degrees.
+        pressureMB:
+          type: number
+          description: Pressure in millibars.
+        pressureIN:
+          type: number
+          description: Pressure in inches of mercury.
+        precipMM:
+          type: number
+          description: Precipitation in millimeters.
+        precipIN:
+          type: number
+          description: Precipitation in inches.
+        sky:
+          type: integer
+          description: Sky cover percentage.
+        visibilityKM:
+          type: number
+          description: Visibility in kilometers.
+        visibilityMI:
+          type: number
+          description: Visibility in miles.
+        cloudsCoded:
+          type: string
+          description: Cloud coverage code.
+        weather:
+          type: string
+          description: Weather description string.
+        weatherCoded:
+          type: array
+          items:
+            type: object
+          description: Coded weather conditions array.
+        weatherPrimary:
+          type: string
+          description: Primary weather condition description.
+        icon:
+          type: string
+          description: Icon code for current conditions.
+        isDay:
+          type: boolean
+          description: Whether it is daytime at the location.
+        timestamp:
+          type: integer
+          description: Unix timestamp of the observation.
+        dateTimeISO:
+          type: string
+          format: date-time
+          description: ISO 8601 datetime string.
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    ObservationsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            oneOf:
+            - $ref: '#/components/schemas/ConditionsRecord'
+            - type: array
+              items:
+                $ref: '#/components/schemas/ConditionsRecord'
+    ConditionsRecord:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Station or place identifier.
+        loc:
+          $ref: '#/components/schemas/Location'
+        place:
+          type: object
+          description: Place name components.
+        profile:
+          type: object
+          description: Location profile data.
+        ob:
+          $ref: '#/components/schemas/ConditionsObservation'
+        raw:
+          type: string
+          description: Raw METAR or observation string.
+        relativeTo:
+          type: object
+          description: Distance and bearing relative to queried location.
+  securitySchemes:
+    clientAuth:
+      type: apiKey
+      in: query
+      name: client_id
+      description: Xweather uses client_id and client_secret query parameters for authentication. Both are required on every request.

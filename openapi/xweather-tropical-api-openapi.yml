@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: Xweather Weather Air Quality Tropical API
+  description: The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.
+  version: 1.0.0
+  contact:
+    name: Xweather Support
+    url: https://www.xweather.com/support
+  termsOfService: https://www.xweather.com/legal/terms
+servers:
+- url: https://data.api.xweather.com
+  description: Xweather Weather API base URL
+security:
+- clientAuth: []
+tags:
+- name: Tropical
+  description: Tropical cyclone and hurricane data
+paths:
+  /tropical/cyclones:
+    get:
+      operationId: listTropicalCyclones
+      summary: List Tropical Cyclones
+      description: Returns active and archive information on global tropical cyclones including category, track, and intensity data.
+      tags:
+      - Tropical
+      parameters:
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client ID.
+      - name: client_secret
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client secret.
+      - name: filter
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - active
+          - archive
+        description: Filter by active or archive cyclones.
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Maximum number of cyclones to return.
+      responses:
+        '200':
+          description: Tropical cyclone data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TropicalCyclonesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    TropicalCyclonesResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                basin:
+                  type: string
+                category:
+                  type: string
+                status:
+                  type: string
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+  responses:
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+  securitySchemes:
+    clientAuth:
+      type: apiKey
+      in: query
+      name: client_id
+      description: Xweather uses client_id and client_secret query parameters for authentication. Both are required on every request.

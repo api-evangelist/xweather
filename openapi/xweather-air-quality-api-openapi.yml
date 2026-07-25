@@ -1,0 +1,198 @@
+openapi: 3.1.0
+info:
+  title: Xweather Weather Air Quality API
+  description: The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.
+  version: 1.0.0
+  contact:
+    name: Xweather Support
+    url: https://www.xweather.com/support
+  termsOfService: https://www.xweather.com/legal/terms
+servers:
+- url: https://data.api.xweather.com
+  description: Xweather Weather API base URL
+security:
+- clientAuth: []
+tags:
+- name: Air Quality
+  description: Air quality index and pollutant data
+paths:
+  /airquality/{location}:
+    get:
+      operationId: getAirQuality
+      summary: Get Air Quality Data
+      description: Returns current and forecast Air Quality Index (AQI), Health Index (AQHI), and individual pollutant concentrations for a location.
+      tags:
+      - Air Quality
+      parameters:
+      - name: location
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Location identifier (ZIP code, city name, lat/long).
+        example: los-angeles,ca
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client ID.
+      - name: client_secret
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Xweather API client secret.
+      - name: fields
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated list of fields to return.
+      responses:
+        '200':
+          description: Air quality data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AirQualityResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    AirQualityObservation:
+      type: object
+      properties:
+        aqi:
+          type: integer
+          description: Air Quality Index value.
+        category:
+          type: string
+          description: AQI category (e.g., Good, Moderate, Unhealthy).
+        pollutants:
+          type: object
+          description: Individual pollutant concentrations.
+          properties:
+            o3:
+              type: object
+              description: Ozone data.
+            pm25:
+              type: object
+              description: PM2.5 particulate matter data.
+            pm10:
+              type: object
+              description: PM10 particulate matter data.
+            co:
+              type: object
+              description: Carbon monoxide data.
+            no2:
+              type: object
+              description: Nitrogen dioxide data.
+            so2:
+              type: object
+              description: Sulfur dioxide data.
+        timestamp:
+          type: integer
+        dateTimeISO:
+          type: string
+          format: date-time
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    AirQualityResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: object
+            properties:
+              loc:
+                $ref: '#/components/schemas/Location'
+              ob:
+                $ref: '#/components/schemas/AirQualityObservation'
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Location identifier.
+        name:
+          type: string
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
+  responses:
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+  securitySchemes:
+    clientAuth:
+      type: apiKey
+      in: query
+      name: client_id
+      description: Xweather uses client_id and client_secret query parameters for authentication. Both are required on every request.
