@@ -1,0 +1,30 @@
+{
+  "provider": "xweather",
+  "sources": [
+    "xweather-air-quality-api-openapi.yml",
+    "xweather-alerts-api-openapi.yml",
+    "xweather-conditions-api-openapi.yml",
+    "xweather-fires-api-openapi.yml",
+    "xweather-forecasts-api-openapi.yml",
+    "xweather-lightning-api-openapi.yml",
+    "xweather-maritime-api-openapi.yml",
+    "xweather-observations-api-openapi.yml",
+    "xweather-tropical-api-openapi.yml"
+  ],
+  "outputs": [
+    "xweather-air-quality-api-openapi.yml",
+    "xweather-alerts-api-openapi.yml",
+    "xweather-conditions-api-openapi.yml",
+    "xweather-fires-api-openapi.yml",
+    "xweather-forecasts-api-openapi.yml",
+    "xweather-lightning-api-openapi.yml",
+    "xweather-maritime-api-openapi.yml",
+    "xweather-observations-api-openapi.yml",
+    "xweather-tropical-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
