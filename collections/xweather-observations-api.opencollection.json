@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xweather Weather Air Quality Observations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Observations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Weather Observations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/observations/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "KSEA",
+                "type": "path",
+                "description": "Location identifier (city, ZIP code, ICAO code, lat/long)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Filter results (e.g., allstations, metar)."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of observations to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns current weather observations from METAR stations and other reporting stations near the specified location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

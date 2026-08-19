@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xweather Weather Air Quality Lightning API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lightning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Lightning Strike Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/lightning/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "40.7128,-74.0060",
+                "type": "path",
+                "description": "Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\")."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of lightning strikes to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes."
+        },
+        {
+          "info": {
+            "name": "Get Lightning Threat Nowcast",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/lightning/threats/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "dallas,tx",
+                "type": "path",
+                "description": "Location identifier (lat/long or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              }
+            ]
+          },
+          "docs": "Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

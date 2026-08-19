@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xweather Weather Air Quality Maritime API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Maritime",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Maritime Weather Conditions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/maritime/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "47.5,-124.6",
+                "type": "path",
+                "description": "Location identifier (lat/long or coastal place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns global marine weather data including wave height, sea surface temperature, swell, and wind for navigation and offshore operations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

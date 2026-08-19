@@ -1,0 +1,75 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xweather Weather Air Quality Forecasts API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "client_id",
+      "value": "{{client_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecasts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Weather Forecasts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.api.xweather.com/forecasts/:location",
+            "params": [
+              {
+                "name": "location",
+                "value": "new-york,ny",
+                "type": "path",
+                "description": "Location identifier (ZIP code, city name, lat/long, or place name)."
+              },
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client ID."
+              },
+              {
+                "name": "client_secret",
+                "value": "",
+                "type": "query",
+                "description": "Your Xweather API client secret."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Forecast interval filter."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of forecast periods to return."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns weather forecast data for a specified location including hourly and daily forecasts."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
