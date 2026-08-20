@@ -27,6 +27,16 @@ tags:
   - Air Quality
   - Company
   - Data
+  - Forecast
+  - Lightning
+  - Maritime
+  - Observations
+  - Severe Weather
+  - Weather
+tags_raw:
+  - Air Quality
+  - Company
+  - Data
   - Forecasts
   - Lightning
   - Maritime
@@ -107,6 +117,8 @@ apis:
   humanURL: https://www.xweather.com/docs/weather-api
   baseURL: https://data.api.xweather.com
   tags:
+  - Forecast
+  tags_raw:
   - Forecasts
   properties:
   - type: OpenAPI
