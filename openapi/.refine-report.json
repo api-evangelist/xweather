@@ -1,15 +1,7 @@
 {
   "provider": "xweather",
   "sources": [
-    "xweather-air-quality-api-openapi.yml",
-    "xweather-alerts-api-openapi.yml",
-    "xweather-conditions-api-openapi.yml",
-    "xweather-fires-api-openapi.yml",
-    "xweather-forecasts-api-openapi.yml",
-    "xweather-lightning-api-openapi.yml",
-    "xweather-maritime-api-openapi.yml",
-    "xweather-observations-api-openapi.yml",
-    "xweather-tropical-api-openapi.yml"
+    "_original/xweather-weather-api-openapi.yml"
   ],
   "outputs": [
     "xweather-air-quality-api-openapi.yml",
@@ -25,6 +17,20 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "xweather-weather-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "xweather-air-quality-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-alerts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-conditions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-fires-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-forecasts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-lightning-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-maritime-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-observations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "xweather-tropical-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xweather Weather Air Quality Lightning API
+  title: Xweather Weather Lightning API
   description: The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.
   version: 1.0.0
   contact:
@@ -115,26 +115,56 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found - location or resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
+    LightningResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  $ref: '#/components/schemas/LightningStrike'
+    LightningStrike:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Strike identifier.
+        lat:
+          type: number
+          description: Latitude of the strike.
+        lon:
+          type: number
+          description: Longitude of the strike.
+        timestamp:
+          type: integer
+          description: Unix timestamp of the strike.
+        dateTimeISO:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: Strike type (e.g., CG for cloud-to-ground, IC for intra-cloud).
+        polarity:
+          type: string
+          enum:
+          - +
+          - '-'
+          description: Strike polarity (positive or negative).
+        peakAmpKA:
+          type: number
+          description: Peak amplitude in kiloamperes.
+        ic:
+          type: boolean
+          description: Whether the strike was intra-cloud.
     Location:
       type: object
       properties:
@@ -173,49 +203,15 @@ components:
         profile:
           type: object
           description: Additional location profile data.
-    LightningStrike:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Strike identifier.
-        lat:
-          type: number
-          description: Latitude of the strike.
-        lon:
-          type: number
-          description: Longitude of the strike.
-        timestamp:
-          type: integer
-          description: Unix timestamp of the strike.
-        dateTimeISO:
-          type: string
-          format: date-time
-        type:
-          type: string
-          description: Strike type (e.g., CG for cloud-to-ground, IC for intra-cloud).
-        polarity:
-          type: string
-          enum:
-          - +
-          - '-'
-          description: Strike polarity (positive or negative).
-        peakAmpKA:
-          type: number
-          description: Peak amplitude in kiloamperes.
-        ic:
-          type: boolean
-          description: Whether the strike was intra-cloud.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
+    LightningThreatsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
     ApiError:
       type: object
       properties:
@@ -227,31 +223,35 @@ components:
           type: string
           description: Human-readable error description.
           example: Invalid client ID or secret.
-    LightningResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                loc:
-                  $ref: '#/components/schemas/Location'
-                ob:
-                  $ref: '#/components/schemas/LightningStrike'
-    LightningThreatsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey

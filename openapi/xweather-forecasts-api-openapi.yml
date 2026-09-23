@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Xweather Weather Air Quality Forecasts API
+  title: Xweather Weather Forecasts API
   description: The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.
   version: 1.0.0
   contact:
@@ -81,61 +81,45 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found - location or resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
-    ApiResponse:
+    Location:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    ApiError:
-      type: object
-      properties:
-        code:
+        id:
           type: string
-          description: Error code string.
-          example: invalid_client
-        description:
+          description: Location identifier.
+        name:
           type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
-    ForecastsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: object
-            properties:
-              loc:
-                $ref: '#/components/schemas/Location'
-              periods:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ForecastPeriod'
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
     ForecastPeriod:
       type: object
       properties:
@@ -191,44 +175,60 @@ components:
           type: string
         isDay:
           type: boolean
-    Location:
+    ForecastsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: object
+            properties:
+              loc:
+                $ref: '#/components/schemas/Location'
+              periods:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ForecastPeriod'
+    ApiError:
       type: object
       properties:
-        id:
+        code:
           type: string
-          description: Location identifier.
-        name:
+          description: Error code string.
+          example: invalid_client
+        description:
           type: string
-          description: Location name.
-        state:
-          type: string
-          description: State or province code.
-        stateFull:
-          type: string
-          description: Full state or province name.
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2).
-        countryFull:
-          type: string
-          description: Full country name.
-        lat:
-          type: number
-          format: float
-          description: Latitude.
-        lon:
-          type: number
-          format: float
-          description: Longitude.
-        elevM:
-          type: number
-          description: Elevation in meters.
-        elevFT:
-          type: number
-          description: Elevation in feet.
-        profile:
-          type: object
-          description: Additional location profile data.
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey
