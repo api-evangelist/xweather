@@ -77,26 +77,6 @@ components:
           schema:
             $ref: '#/components/schemas/ApiResponse'
   schemas:
-    TropicalCyclonesResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-                basin:
-                  type: string
-                category:
-                  type: string
-                status:
-                  type: string
     ApiError:
       type: object
       properties:
@@ -118,6 +98,26 @@ components:
           $ref: '#/components/schemas/ApiError'
       required:
       - success
+    TropicalCyclonesResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                basin:
+                  type: string
+                category:
+                  type: string
+                status:
+                  type: string
   securitySchemes:
     clientAuth:
       type: apiKey

@@ -116,22 +116,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    LightningResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                loc:
-                  $ref: '#/components/schemas/Location'
-                ob:
-                  $ref: '#/components/schemas/LightningStrike'
     LightningStrike:
       type: object
       properties:
@@ -165,6 +149,17 @@ components:
         ic:
           type: boolean
           description: Whether the strike was intra-cloud.
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
     Location:
       type: object
       properties:
@@ -212,17 +207,6 @@ components:
             type: array
             items:
               type: object
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code string.
-          example: invalid_client
-        description:
-          type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
     ApiResponse:
       type: object
       properties:
@@ -233,6 +217,22 @@ components:
           $ref: '#/components/schemas/ApiError'
       required:
       - success
+    LightningResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  $ref: '#/components/schemas/LightningStrike'
   responses:
     BadRequest:
       description: Bad request - invalid parameters
@@ -240,14 +240,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
+    NotFound:
+      description: Not found - location or resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
       content:
         application/json:
           schema:
