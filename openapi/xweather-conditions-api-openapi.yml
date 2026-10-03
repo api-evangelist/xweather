@@ -76,17 +76,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ConditionsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            oneOf:
-            - $ref: '#/components/schemas/ConditionsRecord'
-            - type: array
-              items:
-                $ref: '#/components/schemas/ConditionsRecord'
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
     ConditionsObservation:
       type: object
       properties:
@@ -171,17 +181,39 @@ components:
           type: string
           format: date-time
           description: ISO 8601 datetime string.
-    ApiError:
+    ConditionsRecord:
       type: object
       properties:
-        code:
+        id:
           type: string
-          description: Error code string.
-          example: invalid_client
-        description:
+          description: Station or place identifier.
+        loc:
+          $ref: '#/components/schemas/Location'
+        place:
+          type: object
+          description: Place name components.
+        profile:
+          type: object
+          description: Location profile data.
+        ob:
+          $ref: '#/components/schemas/ConditionsObservation'
+        raw:
           type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
+          description: Raw METAR or observation string.
+        relativeTo:
+          type: object
+          description: Distance and bearing relative to queried location.
+    ConditionsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            oneOf:
+            - $ref: '#/components/schemas/ConditionsRecord'
+            - type: array
+              items:
+                $ref: '#/components/schemas/ConditionsRecord'
     Location:
       type: object
       properties:
@@ -220,38 +252,6 @@ components:
         profile:
           type: object
           description: Additional location profile data.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    ConditionsRecord:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Station or place identifier.
-        loc:
-          $ref: '#/components/schemas/Location'
-        place:
-          type: object
-          description: Place name components.
-        profile:
-          type: object
-          description: Location profile data.
-        ob:
-          $ref: '#/components/schemas/ConditionsObservation'
-        raw:
-          type: string
-          description: Raw METAR or observation string.
-        relativeTo:
-          type: object
-          description: Distance and bearing relative to queried location.
   responses:
     BadRequest:
       description: Bad request - invalid parameters
@@ -259,14 +259,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
+    NotFound:
+      description: Not found - location or resource not found
       content:
         application/json:
           schema:

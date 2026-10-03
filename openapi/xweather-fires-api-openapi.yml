@@ -69,26 +69,17 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
     ApiError:
       type: object
       properties:
@@ -137,16 +128,25 @@ components:
                 type:
                   type: string
                   description: Fire type.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey

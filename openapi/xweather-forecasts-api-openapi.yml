@@ -81,89 +81,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code string.
-          example: invalid_client
-        description:
-          type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
-    Location:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Location identifier.
-        name:
-          type: string
-          description: Location name.
-        state:
-          type: string
-          description: State or province code.
-        stateFull:
-          type: string
-          description: Full state or province name.
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2).
-        countryFull:
-          type: string
-          description: Full country name.
-        lat:
-          type: number
-          format: float
-          description: Latitude.
-        lon:
-          type: number
-          format: float
-          description: Longitude.
-        elevM:
-          type: number
-          description: Elevation in meters.
-        elevFT:
-          type: number
-          description: Elevation in feet.
-        profile:
-          type: object
-          description: Additional location profile data.
-    ForecastsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: object
-            properties:
-              loc:
-                $ref: '#/components/schemas/Location'
-              periods:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ForecastPeriod'
     ApiResponse:
       type: object
       properties:
@@ -229,6 +147,88 @@ components:
           type: string
         isDay:
           type: boolean
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    Location:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Location identifier.
+        name:
+          type: string
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
+    ForecastsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: object
+            properties:
+              loc:
+                $ref: '#/components/schemas/Location'
+              periods:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ForecastPeriod'
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey

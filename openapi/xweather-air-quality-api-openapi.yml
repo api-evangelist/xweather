@@ -63,26 +63,17 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
     ApiError:
       type: object
       properties:
@@ -94,6 +85,54 @@ components:
           type: string
           description: Human-readable error description.
           example: Invalid client ID or secret.
+    AirQualityObservation:
+      type: object
+      properties:
+        aqi:
+          type: integer
+          description: Air Quality Index value.
+        category:
+          type: string
+          description: AQI category (e.g., Good, Moderate, Unhealthy).
+        pollutants:
+          type: object
+          description: Individual pollutant concentrations.
+          properties:
+            o3:
+              type: object
+              description: Ozone data.
+            pm25:
+              type: object
+              description: PM2.5 particulate matter data.
+            pm10:
+              type: object
+              description: PM10 particulate matter data.
+            co:
+              type: object
+              description: Carbon monoxide data.
+            no2:
+              type: object
+              description: Nitrogen dioxide data.
+            so2:
+              type: object
+              description: Sulfur dioxide data.
+        timestamp:
+          type: integer
+        dateTimeISO:
+          type: string
+          format: date-time
+    AirQualityResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: object
+            properties:
+              loc:
+                $ref: '#/components/schemas/Location'
+              ob:
+                $ref: '#/components/schemas/AirQualityObservation'
     Location:
       type: object
       properties:
@@ -132,64 +171,25 @@ components:
         profile:
           type: object
           description: Additional location profile data.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    AirQualityResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: object
-            properties:
-              loc:
-                $ref: '#/components/schemas/Location'
-              ob:
-                $ref: '#/components/schemas/AirQualityObservation'
-    AirQualityObservation:
-      type: object
-      properties:
-        aqi:
-          type: integer
-          description: Air Quality Index value.
-        category:
-          type: string
-          description: AQI category (e.g., Good, Moderate, Unhealthy).
-        pollutants:
-          type: object
-          description: Individual pollutant concentrations.
-          properties:
-            o3:
-              type: object
-              description: Ozone data.
-            pm25:
-              type: object
-              description: PM2.5 particulate matter data.
-            pm10:
-              type: object
-              description: PM10 particulate matter data.
-            co:
-              type: object
-              description: Carbon monoxide data.
-            no2:
-              type: object
-              description: Nitrogen dioxide data.
-            so2:
-              type: object
-              description: Sulfur dioxide data.
-        timestamp:
-          type: integer
-        dateTimeISO:
-          type: string
-          format: date-time
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey

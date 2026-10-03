@@ -63,20 +63,17 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Bad request - invalid parameters
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
     ApiError:
       type: object
       properties:
@@ -88,16 +85,6 @@ components:
           type: string
           description: Human-readable error description.
           example: Invalid client ID or secret.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
     TropicalCyclonesResponse:
       allOf:
       - $ref: '#/components/schemas/ApiResponse'
@@ -118,6 +105,19 @@ components:
                   type: string
                 status:
                   type: string
+  responses:
+    BadRequest:
+      description: Bad request - invalid parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
   securitySchemes:
     clientAuth:
       type: apiKey

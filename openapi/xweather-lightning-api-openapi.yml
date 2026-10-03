@@ -116,6 +116,43 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    LightningResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  $ref: '#/components/schemas/LightningStrike'
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
     LightningStrike:
       type: object
       properties:
@@ -149,17 +186,15 @@ components:
         ic:
           type: boolean
           description: Whether the strike was intra-cloud.
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code string.
-          example: invalid_client
-        description:
-          type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
+    LightningThreatsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
     Location:
       type: object
       properties:
@@ -198,41 +233,6 @@ components:
         profile:
           type: object
           description: Additional location profile data.
-    LightningThreatsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    LightningResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                loc:
-                  $ref: '#/components/schemas/Location'
-                ob:
-                  $ref: '#/components/schemas/LightningStrike'
   responses:
     BadRequest:
       description: Bad request - invalid parameters
@@ -240,14 +240,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
+    Unauthorized:
+      description: Unauthorized - invalid client ID or secret
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiResponse'
-    Unauthorized:
-      description: Unauthorized - invalid client ID or secret
+    NotFound:
+      description: Not found - location or resource not found
       content:
         application/json:
           schema:
