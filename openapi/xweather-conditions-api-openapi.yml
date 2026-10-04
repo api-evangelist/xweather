@@ -76,16 +76,44 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiResponse:
+    Location:
       type: object
       properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
+        id:
+          type: string
+          description: Location identifier.
+        name:
+          type: string
+          description: Location name.
+        state:
+          type: string
+          description: State or province code.
+        stateFull:
+          type: string
+          description: Full state or province name.
+        country:
+          type: string
+          description: Country code (ISO 3166-1 alpha-2).
+        countryFull:
+          type: string
+          description: Full country name.
+        lat:
+          type: number
+          format: float
+          description: Latitude.
+        lon:
+          type: number
+          format: float
+          description: Longitude.
+        elevM:
+          type: number
+          description: Elevation in meters.
+        elevFT:
+          type: number
+          description: Elevation in feet.
+        profile:
+          type: object
+          description: Additional location profile data.
     ApiError:
       type: object
       properties:
@@ -97,6 +125,17 @@ components:
           type: string
           description: Human-readable error description.
           example: Invalid client ID or secret.
+    ConditionsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            oneOf:
+            - $ref: '#/components/schemas/ConditionsRecord'
+            - type: array
+              items:
+                $ref: '#/components/schemas/ConditionsRecord'
     ConditionsObservation:
       type: object
       properties:
@@ -203,56 +242,23 @@ components:
         relativeTo:
           type: object
           description: Distance and bearing relative to queried location.
-    ConditionsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            oneOf:
-            - $ref: '#/components/schemas/ConditionsRecord'
-            - type: array
-              items:
-                $ref: '#/components/schemas/ConditionsRecord'
-    Location:
+    ApiResponse:
       type: object
       properties:
-        id:
-          type: string
-          description: Location identifier.
-        name:
-          type: string
-          description: Location name.
-        state:
-          type: string
-          description: State or province code.
-        stateFull:
-          type: string
-          description: Full state or province name.
-        country:
-          type: string
-          description: Country code (ISO 3166-1 alpha-2).
-        countryFull:
-          type: string
-          description: Full country name.
-        lat:
-          type: number
-          format: float
-          description: Latitude.
-        lon:
-          type: number
-          format: float
-          description: Longitude.
-        elevM:
-          type: number
-          description: Elevation in meters.
-        elevFT:
-          type: number
-          description: Elevation in feet.
-        profile:
-          type: object
-          description: Additional location profile data.
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
   responses:
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
     BadRequest:
       description: Bad request - invalid parameters
       content:
@@ -261,12 +267,6 @@ components:
             $ref: '#/components/schemas/ApiResponse'
     Unauthorized:
       description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
       content:
         application/json:
           schema:

@@ -116,85 +116,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    LightningResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
-              properties:
-                id:
-                  type: string
-                loc:
-                  $ref: '#/components/schemas/Location'
-                ob:
-                  $ref: '#/components/schemas/LightningStrike'
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code string.
-          example: invalid_client
-        description:
-          type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
-    LightningStrike:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Strike identifier.
-        lat:
-          type: number
-          description: Latitude of the strike.
-        lon:
-          type: number
-          description: Longitude of the strike.
-        timestamp:
-          type: integer
-          description: Unix timestamp of the strike.
-        dateTimeISO:
-          type: string
-          format: date-time
-        type:
-          type: string
-          description: Strike type (e.g., CG for cloud-to-ground, IC for intra-cloud).
-        polarity:
-          type: string
-          enum:
-          - +
-          - '-'
-          description: Strike polarity (positive or negative).
-        peakAmpKA:
-          type: number
-          description: Peak amplitude in kiloamperes.
-        ic:
-          type: boolean
-          description: Whether the strike was intra-cloud.
-    LightningThreatsResponse:
-      allOf:
-      - $ref: '#/components/schemas/ApiResponse'
-      - type: object
-        properties:
-          response:
-            type: array
-            items:
-              type: object
     Location:
       type: object
       properties:
@@ -233,7 +154,92 @@ components:
         profile:
           type: object
           description: Additional location profile data.
+    LightningThreatsResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
+    LightningStrike:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Strike identifier.
+        lat:
+          type: number
+          description: Latitude of the strike.
+        lon:
+          type: number
+          description: Longitude of the strike.
+        timestamp:
+          type: integer
+          description: Unix timestamp of the strike.
+        dateTimeISO:
+          type: string
+          format: date-time
+        type:
+          type: string
+          description: Strike type (e.g., CG for cloud-to-ground, IC for intra-cloud).
+        polarity:
+          type: string
+          enum:
+          - +
+          - '-'
+          description: Strike polarity (positive or negative).
+        peakAmpKA:
+          type: number
+          description: Peak amplitude in kiloamperes.
+        ic:
+          type: boolean
+          description: Whether the strike was intra-cloud.
+    LightningResponse:
+      allOf:
+      - $ref: '#/components/schemas/ApiResponse'
+      - type: object
+        properties:
+          response:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                loc:
+                  $ref: '#/components/schemas/Location'
+                ob:
+                  $ref: '#/components/schemas/LightningStrike'
   responses:
+    NotFound:
+      description: Not found - location or resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiResponse'
     BadRequest:
       description: Bad request - invalid parameters
       content:
@@ -242,12 +248,6 @@ components:
             $ref: '#/components/schemas/ApiResponse'
     Unauthorized:
       description: Unauthorized - invalid client ID or secret
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiResponse'
-    NotFound:
-      description: Not found - location or resource not found
       content:
         application/json:
           schema:

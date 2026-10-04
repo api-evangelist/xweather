@@ -64,27 +64,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
-    ApiError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Error code string.
-          example: invalid_client
-        description:
-          type: string
-          description: Human-readable error description.
-          example: Invalid client ID or secret.
     TropicalCyclonesResponse:
       allOf:
       - $ref: '#/components/schemas/ApiResponse'
@@ -105,6 +84,27 @@ components:
                   type: string
                 status:
                   type: string
+    ApiError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Error code string.
+          example: invalid_client
+        description:
+          type: string
+          description: Human-readable error description.
+          example: Invalid client ID or secret.
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
   responses:
     BadRequest:
       description: Bad request - invalid parameters
