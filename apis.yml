@@ -46,6 +46,10 @@ tags:
   - Observations
   - Severe Weather
   - Weather
+  - Climate
+  - Satellite
+  - Mapping
+  - REST
 tags_raw:
   - Air Quality
   - Company
@@ -56,6 +60,10 @@ tags_raw:
   - Observations
   - Severe Weather
   - Weather
+  - Climate
+  - Satellite
+  - Mapping
+  - REST
 created: '2024-11-08'
 modified: '2026-05-19'
 specificationVersion: '0.23'
@@ -324,6 +332,8 @@ common:
         description: Severe-weather alert payloads align with CAP severity, urgency, and certainty fields.
       - name: METAR
         description: Surface observations are derived from the international METAR observation standard.
+  - type: Blog
+    url: https://www.xweather.com/blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
