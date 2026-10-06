@@ -65,7 +65,7 @@ tags_raw:
   - Mapping
   - REST
 created: '2024-11-08'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: xweather:xweather-air-quality-api
@@ -215,6 +215,10 @@ apis:
   - type: APIReference
     url: https://www.xweather.com/docs/weather-api/endpoints
 common:
+  - url: https://www.xweather.com/blog/category/news
+    type: Blog
+  - url: https://www.xweather.com/feed.xml
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/xweather-agentic-access.yml
   - type: DomainSecurity
