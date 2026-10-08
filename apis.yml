@@ -215,6 +215,12 @@ apis:
   - type: APIReference
     url: https://www.xweather.com/docs/weather-api/endpoints
 common:
+  - type: Plans
+    url: plans/xweather-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/xweather-rate-limits.yml
+  - type: FinOps
+    url: finops/xweather-finops.yml
   - url: https://www.xweather.com/blog/category/news
     type: Blog
   - url: https://www.xweather.com/feed.xml
