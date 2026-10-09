@@ -7,14 +7,17 @@ front_door_ai:
   probed_at: '2026-09-17'
   host: xweather.com
   final_host: www.xweather.com
-  ownership: inherited
+  ownership: own
   owner: xweather
   shares_host_with: null
-  inherited_from: www.xweather.com
+  inherited_from: null
+  alias_of: www.xweather.com
   verdict: scored
-  score: null
+  score: 7
+  band: 4
+  band_label: moderate
   host_score: 7
-  density: null
+  density: 6.04
   words: 1159
   tiers:
     agentic: 0
