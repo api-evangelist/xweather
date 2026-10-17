@@ -84,6 +84,16 @@ components:
                   type: string
                 status:
                   type: string
+    ApiResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+          description: Whether the request was successful.
+        error:
+          $ref: '#/components/schemas/ApiError'
+      required:
+      - success
     ApiError:
       type: object
       properties:
@@ -95,16 +105,6 @@ components:
           type: string
           description: Human-readable error description.
           example: Invalid client ID or secret.
-    ApiResponse:
-      type: object
-      properties:
-        success:
-          type: boolean
-          description: Whether the request was successful.
-        error:
-          $ref: '#/components/schemas/ApiError'
-      required:
-      - success
   responses:
     BadRequest:
       description: Bad request - invalid parameters
