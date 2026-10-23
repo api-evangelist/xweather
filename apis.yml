@@ -215,6 +215,8 @@ apis:
   - type: APIReference
     url: https://www.xweather.com/docs/weather-api/endpoints
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/xweather/overview
   - type: Plans
     url: plans/xweather-plans-pricing.yml
   - type: RateLimits
