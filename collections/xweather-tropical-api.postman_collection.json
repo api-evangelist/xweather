@@ -1,255 +1,266 @@
 {
+  "info": {
+    "_postman_id": "6316054b-bef1-4402-8a55-b51be1858761",
+    "name": "Xweather Weather Tropical API",
+    "description": "The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.\n\nContact Support:\n Name: Xweather Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:45.000Z",
+    "updatedAt": "2026-10-22T01:26:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6316054b-bef1-4402-8a55-b51be1858761"
+  },
   "item": [
     {
-      "id": "e6701554-8b6b-4fb2-a7ef-74ab010fa3be",
-      "name": "Tropical",
-      "description": {
-        "content": "Tropical cyclone and hurricane data",
-        "type": "text/plain"
-      },
+      "name": "tropical",
       "item": [
         {
-          "id": "9a5387a0-2b04-46c9-a055-6b708236ff51",
-          "name": "List Tropical Cyclones",
-          "request": {
-            "name": "List Tropical Cyclones",
-            "description": {
-              "content": "Returns active and archive information on global tropical cyclones including category, track, and intensity data.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "tropical",
-                "cyclones"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client ID."
-                },
-                {
-                  "disabled": false,
-                  "key": "client_secret",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client secret."
-                },
-                {
-                  "disabled": false,
-                  "key": "filter",
-                  "value": "<string>",
-                  "description": "Filter by active or archive cyclones."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<integer>",
-                  "description": "Maximum number of cyclones to return."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "cyclones",
+          "item": [
             {
-              "id": "da27617a-cec9-4387-a786-b78905cf50d7",
-              "name": "Tropical cyclone data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tropical",
-                    "cyclones"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "List Tropical Cyclones",
+              "id": "800eba70-5d3d-4da9-a983-ec4c700b39b9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"basin\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"basin\": \"string\",\n      \"category\": \"string\",\n      \"status\": \"string\"\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "51b59cb7-8aca-407b-a58d-fda2ad0559ea",
-              "name": "Bad request - invalid parameters",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/tropical/cyclones?client_id=<string>&client_secret=<string>&filter=active&limit=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "tropical",
                     "cyclones"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Your Xweather API client ID.",
                       "key": "client_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) Your Xweather API client secret.",
                       "key": "client_secret",
                       "value": "<string>"
                     },
                     {
+                      "description": "Filter by active or archive cyclones.",
                       "key": "filter",
-                      "value": "<string>"
+                      "value": "active"
                     },
                     {
+                      "description": "Maximum number of cyclones to return.",
                       "key": "limit",
                       "value": "<integer>"
-                    },
+                    }
+                  ]
+                },
+                "description": "Returns active and archive information on global tropical cyclones including category, track, and intensity data."
+              },
+              "response": [
+                {
+                  "id": "e614388e-e028-4cbe-95dd-f774d57a934a",
+                  "name": "Tropical cyclone data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tropical/cyclones?client_id=<API Key>&client_secret=<string>&filter=active&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tropical",
+                        "cyclones"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by active or archive cyclones.",
+                          "key": "filter",
+                          "value": "active"
+                        },
+                        {
+                          "description": "Maximum number of cyclones to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "client_id",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"basin\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"basin\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:26:46.000Z",
+                  "updatedAt": "2026-10-22T01:26:46.000Z",
+                  "uid": "35240-e614388e-e028-4cbe-95dd-f774d57a934a"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "225d8b49-1031-4d25-aff0-9957d3cc4d4e",
-              "name": "Unauthorized - invalid client ID or secret",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "tropical",
-                    "cyclones"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "dd3aeece-6173-449a-94f0-22fd66b01569",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tropical/cyclones?client_id=<API Key>&client_secret=<string>&filter=active&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tropical",
+                        "cyclones"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by active or archive cyclones.",
+                          "key": "filter",
+                          "value": "active"
+                        },
+                        {
+                          "description": "Maximum number of cyclones to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "filter",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": []
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:46.000Z",
+                  "updatedAt": "2026-10-22T01:26:46.000Z",
+                  "uid": "35240-dd3aeece-6173-449a-94f0-22fd66b01569"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "d7bdf5f5-b8dd-4a6f-bf1b-efdfca0c8a00",
+                  "name": "Unauthorized - invalid client ID or secret",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tropical/cyclones?client_id=<API Key>&client_secret=<string>&filter=active&limit=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tropical",
+                        "cyclones"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter by active or archive cyclones.",
+                          "key": "filter",
+                          "value": "active"
+                        },
+                        {
+                          "description": "Maximum number of cyclones to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:46.000Z",
+                  "updatedAt": "2026-10-22T01:26:46.000Z",
+                  "uid": "35240-d7bdf5f5-b8dd-4a6f-bf1b-efdfca0c8a00"
                 }
               ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:26:46.000Z",
+              "updatedAt": "2026-10-22T01:26:46.000Z",
+              "uid": "35240-800eba70-5d3d-4da9-a983-ec4c700b39b9"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "bfab7771-25c0-471e-b451-0eb29853c216",
+          "createdAt": "2026-10-22T01:26:46.000Z",
+          "updatedAt": "2026-10-22T01:26:46.000Z",
+          "uid": "35240-bfab7771-25c0-471e-b451-0eb29853c216"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://data.api.xweather.com",
-      "key": "baseUrl"
+      "id": "366e59d9-2eae-413c-a7d6-d6fe691383c5",
+      "createdAt": "2026-10-22T01:26:46.000Z",
+      "updatedAt": "2026-10-22T01:26:46.000Z",
+      "uid": "35240-366e59d9-2eae-413c-a7d6-d6fe691383c5"
     }
   ],
   "auth": {
@@ -257,25 +268,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "client_id"
+        "value": "client_id",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "query"
+        "value": "query",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "cc94f48d-eac2-4b69-9e69-5c37cd49a1cf",
-    "name": "Xweather Weather Air Quality Tropical API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.\n\nContact Support:\n Name: Xweather Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://data.api.xweather.com"
     }
-  }
+  ]
 }

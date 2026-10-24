@@ -1,664 +1,674 @@
 {
+  "info": {
+    "_postman_id": "4f59c7e1-bc6b-402f-94aa-f0bd0c2fdb06",
+    "name": "Xweather Weather Lightning API",
+    "description": "The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.\n\nContact Support:\n Name: Xweather Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:26:29.000Z",
+    "updatedAt": "2026-10-22T01:26:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4f59c7e1-bc6b-402f-94aa-f0bd0c2fdb06"
+  },
   "item": [
     {
-      "id": "50aa8620-d924-453a-86a9-072f9a662a16",
-      "name": "Lightning",
-      "description": {
-        "content": "Lightning strike data and nowcasts",
-        "type": "text/plain"
-      },
+      "name": "lightning",
       "item": [
         {
-          "id": "7d5d301c-4fa2-428d-8560-56af67dabc1b",
-          "name": "Get Lightning Strike Data",
-          "request": {
-            "name": "Get Lightning Strike Data",
-            "description": {
-              "content": "Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "lightning",
-                ":location"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client ID."
-                },
-                {
-                  "disabled": false,
-                  "key": "client_secret",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client secret."
-                },
-                {
-                  "disabled": false,
-                  "key": "radius",
-                  "value": "<string>",
-                  "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\")."
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "<integer>",
-                  "description": "Maximum number of lightning strikes to return."
-                },
-                {
-                  "disabled": false,
-                  "key": "fields",
-                  "value": "<string>",
-                  "description": "Comma-separated list of fields to return."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "location",
-                  "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{location}",
+          "item": [
             {
-              "id": "39fe2299-7b47-4e81-963d-65c660feacd3",
-              "name": "Lightning strike data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "radius",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
-                    }
-                  ]
-                },
+              "name": "Get Lightning Strike Data",
+              "id": "673c55e3-2d4e-4292-be47-da9f2dbf0cf4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": false,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  },\n  \"response\": [\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 300.33232640549244,\n        \"lon\": 407.310019602819,\n        \"elevM\": 4092.6245302553652,\n        \"elevFT\": 4265.830864671173,\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"string\",\n        \"lat\": 553.9518512696906,\n        \"lon\": 6415.28955977811,\n        \"timestamp\": 6355,\n        \"dateTimeISO\": \"1947-01-26T07:46:15.338Z\",\n        \"type\": \"string\",\n        \"polarity\": \"-\",\n        \"peakAmpKA\": 487.7815788333839,\n        \"ic\": false\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"loc\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"state\": \"string\",\n        \"stateFull\": \"string\",\n        \"country\": \"string\",\n        \"countryFull\": \"string\",\n        \"lat\": 9959.074099188778,\n        \"lon\": 3088.4053447627534,\n        \"elevM\": 2562.348819047344,\n        \"elevFT\": 9080.98556373969,\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"string\",\n        \"lat\": 416.10497043777616,\n        \"lon\": 8060.321911334846,\n        \"timestamp\": 3926,\n        \"dateTimeISO\": \"2002-09-26T08:35:44.335Z\",\n        \"type\": \"string\",\n        \"polarity\": \"+\",\n        \"peakAmpKA\": 7911.510831767131,\n        \"ic\": false\n      }\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "dc0f536f-9d86-430b-8987-d5d5d071e68c",
-              "name": "Bad request - invalid parameters",
-              "originalRequest": {
                 "url": {
+                  "raw": "{{baseUrl}}/lightning/:location?client_id=<string>&client_secret=<string>&radius=<string>&limit=<integer>&fields=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "lightning",
                     ":location"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) Your Xweather API client ID.",
                       "key": "client_id",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) Your Xweather API client secret.",
                       "key": "client_secret",
                       "value": "<string>"
                     },
                     {
+                      "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\").",
                       "key": "radius",
                       "value": "<string>"
                     },
                     {
+                      "description": "Maximum number of lightning strikes to return.",
                       "key": "limit",
                       "value": "<integer>"
                     },
                     {
+                      "description": "Comma-separated list of fields to return.",
                       "key": "fields",
                       "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "d924b7f4-1885-4db5-a3c0-aeb6ecfb5222",
                       "key": "location",
+                      "value": "<string>",
                       "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Returns global lightning strike data including type, location, polarity, and amperage for the last 5 minutes."
               },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "38a1270a-cf4a-436b-ba0f-a05f479a5344",
-              "name": "Unauthorized - invalid client ID or secret",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "49b53e27-e56a-4595-abf6-eeb13e5b22e7",
+                  "name": "Lightning strike data",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lightning/:location?client_id=<API Key>&client_secret=<string>&radius=<string>&limit=<integer>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lightning",
+                        ":location"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\").",
+                          "key": "radius",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of lightning strikes to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "location"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "radius",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  },\n  \"response\": [\n    {\n      \"id\": \"<string>\",\n      \"loc\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"stateFull\": \"<string>\",\n        \"country\": \"<string>\",\n        \"countryFull\": \"<string>\",\n        \"lat\": \"<float>\",\n        \"lon\": \"<float>\",\n        \"elevM\": \"<number>\",\n        \"elevFT\": \"<number>\",\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"<string>\",\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"dateTimeISO\": \"<dateTime>\",\n        \"type\": \"<string>\",\n        \"polarity\": \"+\",\n        \"peakAmpKA\": \"<number>\",\n        \"ic\": \"<boolean>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"loc\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"state\": \"<string>\",\n        \"stateFull\": \"<string>\",\n        \"country\": \"<string>\",\n        \"countryFull\": \"<string>\",\n        \"lat\": \"<float>\",\n        \"lon\": \"<float>\",\n        \"elevM\": \"<number>\",\n        \"elevFT\": \"<number>\",\n        \"profile\": {}\n      },\n      \"ob\": {\n        \"id\": \"<string>\",\n        \"lat\": \"<number>\",\n        \"lon\": \"<number>\",\n        \"timestamp\": \"<integer>\",\n        \"dateTimeISO\": \"<dateTime>\",\n        \"type\": \"<string>\",\n        \"polarity\": \"-\",\n        \"peakAmpKA\": \"<number>\",\n        \"ic\": \"<boolean>\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-10-22T01:26:30.000Z",
+                  "updatedAt": "2026-10-22T01:26:30.000Z",
+                  "uid": "35240-49b53e27-e56a-4595-abf6-eeb13e5b22e7"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "65ee42e2-3f57-4a81-bc01-ca8d6c89d46f",
-              "name": "Not found - location or resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "2a3d1932-e0a4-4227-9849-d8f16027f64c",
+                  "name": "Bad request - invalid parameters",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lightning/:location?client_id=<API Key>&client_secret=<string>&radius=<string>&limit=<integer>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lightning",
+                        ":location"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\").",
+                          "key": "radius",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of lightning strikes to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "location"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "radius",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "<integer>"
-                    },
-                    {
-                      "key": "fields",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier or radius query (e.g., \"40.7128,-74.0060\" or \"closest:20:40.7128,-74.0060\")."
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:30.000Z",
+                  "updatedAt": "2026-10-22T01:26:30.000Z",
+                  "uid": "35240-2a3d1932-e0a4-4227-9849-d8f16027f64c"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "id": "c4c3a7dc-9351-45a6-8567-8adc90901286",
+                  "name": "Unauthorized - invalid client ID or secret",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lightning/:location?client_id=<API Key>&client_secret=<string>&radius=<string>&limit=<integer>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lightning",
+                        ":location"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\").",
+                          "key": "radius",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of lightning strikes to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "location"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:30.000Z",
+                  "updatedAt": "2026-10-22T01:26:30.000Z",
+                  "uid": "35240-c4c3a7dc-9351-45a6-8567-8adc90901286"
+                },
+                {
+                  "id": "330c00f7-df84-41bb-9a49-2683eaa54c09",
+                  "name": "Not found - location or resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lightning/:location?client_id=<API Key>&client_secret=<string>&radius=<string>&limit=<integer>&fields=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lightning",
+                        ":location"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Radius for nearby strikes (e.g., \"25mi\" or \"40km\").",
+                          "key": "radius",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Maximum number of lightning strikes to return.",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Comma-separated list of fields to return.",
+                          "key": "fields",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "location"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-10-22T01:26:30.000Z",
+                  "updatedAt": "2026-10-22T01:26:30.000Z",
+                  "uid": "35240-330c00f7-df84-41bb-9a49-2683eaa54c09"
                 }
               ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-22T01:26:30.000Z",
+              "updatedAt": "2026-10-22T01:26:30.000Z",
+              "uid": "35240-673c55e3-2d4e-4292-be47-da9f2dbf0cf4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "3a70fb6a-234b-4817-a6c4-9bd1e9b1a1b4",
+          "createdAt": "2026-10-22T01:26:30.000Z",
+          "updatedAt": "2026-10-22T01:26:30.000Z",
+          "uid": "35240-3a70fb6a-234b-4817-a6c4-9bd1e9b1a1b4"
         },
         {
-          "id": "a67dcb1c-65ed-4a83-88b8-5f1298bdbd1e",
-          "name": "Get Lightning Threat Nowcast",
-          "request": {
-            "name": "Get Lightning Threat Nowcast",
-            "description": {
-              "content": "Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "lightning",
-                "threats",
-                ":location"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "client_id",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client ID."
-                },
-                {
-                  "disabled": false,
-                  "key": "client_secret",
-                  "value": "<string>",
-                  "description": "(Required) Your Xweather API client secret."
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "location",
-                  "description": "(Required) Location identifier (lat/long or place name)."
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "threats",
+          "item": [
             {
-              "id": "926999a2-9ab3-406c-861b-4aa5dd603e25",
-              "name": "Lightning threat nowcast data",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    "threats",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier (lat/long or place name)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "{location}",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Get Lightning Threat Nowcast",
+                  "id": "51f9b2c1-47ae-403f-bb87-8053ae5f420c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/lightning/threats/:location?client_id=<string>&client_secret=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "lightning",
+                        "threats",
+                        ":location"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Xweather API client ID.",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Your Xweather API client secret.",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "33f3d26b-817c-4d8e-92ba-3bb9a760c4c3",
+                          "key": "location",
+                          "value": "<string>",
+                          "description": "(Required) Location identifier (lat/long or place name)."
+                        }
+                      ]
+                    },
+                    "description": "Returns lightning nowcasts providing potential thunderstorm activity for the next 60 minutes in 10-minute intervals."
+                  },
+                  "response": [
+                    {
+                      "id": "b4b75a82-71cd-4457-98b1-e209b37456dc",
+                      "name": "Lightning threat nowcast data",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lightning/threats/:location?client_id=<API Key>&client_secret=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lightning",
+                            "threats",
+                            ":location"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your Xweather API client ID.",
+                              "key": "client_id",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "(Required) Your Xweather API client secret.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "location"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:30.000Z",
+                      "updatedAt": "2026-10-22T01:26:30.000Z",
+                      "uid": "35240-b4b75a82-71cd-4457-98b1-e209b37456dc"
+                    },
+                    {
+                      "id": "cfb6d1e0-fc82-4f5e-8332-792410621d34",
+                      "name": "Bad request - invalid parameters",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lightning/threats/:location?client_id=<API Key>&client_secret=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lightning",
+                            "threats",
+                            ":location"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your Xweather API client ID.",
+                              "key": "client_id",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "(Required) Your Xweather API client secret.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "location"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:30.000Z",
+                      "updatedAt": "2026-10-22T01:26:30.000Z",
+                      "uid": "35240-cfb6d1e0-fc82-4f5e-8332-792410621d34"
+                    },
+                    {
+                      "id": "f2132515-c505-4353-8274-799784264a02",
+                      "name": "Unauthorized - invalid client ID or secret",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lightning/threats/:location?client_id=<API Key>&client_secret=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lightning",
+                            "threats",
+                            ":location"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your Xweather API client ID.",
+                              "key": "client_id",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "(Required) Your Xweather API client secret.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "location"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:30.000Z",
+                      "updatedAt": "2026-10-22T01:26:30.000Z",
+                      "uid": "35240-f2132515-c505-4353-8274-799784264a02"
+                    },
+                    {
+                      "id": "ac37b0d8-80f9-471b-ba66-d52d680ccf89",
+                      "name": "Not found - location or resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/lightning/threats/:location?client_id=<API Key>&client_secret=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "lightning",
+                            "threats",
+                            ":location"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Your Xweather API client ID.",
+                              "key": "client_id",
+                              "value": "<API Key>"
+                            },
+                            {
+                              "description": "(Required) Your Xweather API client secret.",
+                              "key": "client_secret",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "location"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"error\": {\n    \"code\": \"<string>\",\n    \"description\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-10-22T01:26:30.000Z",
+                      "updatedAt": "2026-10-22T01:26:30.000Z",
+                      "uid": "35240-ac37b0d8-80f9-471b-ba66-d52d680ccf89"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T01:26:30.000Z",
+                  "updatedAt": "2026-10-22T01:26:30.000Z",
+                  "uid": "35240-51f9b2c1-47ae-403f-bb87-8053ae5f420c"
                 }
               ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2ca2b35f-06a2-48f8-9c82-7ea2be5c5b28",
-              "name": "Bad request - invalid parameters",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    "threats",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier (lat/long or place name)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "020ae31d-30b4-4a95-8f41-6ba194b0a5a9",
-              "name": "Unauthorized - invalid client ID or secret",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    "threats",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier (lat/long or place name)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "37208991-d208-4aba-8b5c-9425074473aa",
-              "name": "Not found - location or resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "lightning",
-                    "threats",
-                    ":location"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "client_id",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_secret",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "client_id",
-                      "value": "<API Key>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "location",
-                      "description": "(Required) Location identifier (lat/long or place name)."
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"success\": true,\n  \"error\": {\n    \"code\": \"invalid_client\",\n    \"description\": \"Invalid client ID or secret.\"\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "144d6aaf-db67-4a91-bb61-0fbb7c050fca",
+              "createdAt": "2026-10-22T01:26:30.000Z",
+              "updatedAt": "2026-10-22T01:26:30.000Z",
+              "uid": "35240-144d6aaf-db67-4a91-bb61-0fbb7c050fca"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "5eaeb95f-bb29-47a6-bf8b-0c46ba36fe50",
+          "createdAt": "2026-10-22T01:26:30.000Z",
+          "updatedAt": "2026-10-22T01:26:30.000Z",
+          "uid": "35240-5eaeb95f-bb29-47a6-bf8b-0c46ba36fe50"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://data.api.xweather.com",
-      "key": "baseUrl"
+      "id": "38d66edd-5936-47ff-8f28-746975480a71",
+      "createdAt": "2026-10-22T01:26:30.000Z",
+      "updatedAt": "2026-10-22T01:26:30.000Z",
+      "uid": "35240-38d66edd-5936-47ff-8f28-746975480a71"
     }
   ],
   "auth": {
@@ -666,25 +676,25 @@
     "apikey": [
       {
         "key": "key",
-        "value": "client_id"
+        "value": "client_id",
+        "type": "string"
       },
       {
         "key": "value",
-        "value": "{{apiKey}}"
+        "value": "{{apiKey}}",
+        "type": "string"
       },
       {
         "key": "in",
-        "value": "query"
+        "value": "query",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "94bbb005-6fc6-45cf-bbb5-837acdb5ec81",
-    "name": "Xweather Weather Air Quality Lightning API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Xweather Weather API provides real-time and historical weather data including current conditions, forecasts, severe weather alerts, lightning data, air quality, maritime weather, and more. Backed by Vaisala, Xweather delivers science-backed hyper-local weather intelligence through a RESTful interface. Authentication uses a client ID and client secret passed as query parameters or HTTP headers.\n\nContact Support:\n Name: Xweather Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://data.api.xweather.com"
     }
-  }
+  ]
 }
